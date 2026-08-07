@@ -1,4 +1,4 @@
-// Aeronest Girls PG & Luxury Apartments - Master Script (v5 Redesign & 5-Menu Layout)
+// Aeronest Girls PG & Luxury Apartments - Master Script (v7 Slider & New Sections)
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize AOS (Animate On Scroll)
@@ -43,6 +43,53 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.classList.remove('scrolled');
     }
   });
+
+  // Google Reviews Carousel Slider Logic
+  const reviewsTrack = document.getElementById('reviewsTrack');
+  const prevBtn = document.getElementById('prevReviewBtn');
+  const nextBtn = document.getElementById('nextReviewBtn');
+
+  if (reviewsTrack && prevBtn && nextBtn) {
+    let currentSlide = 0;
+
+    const getVisibleCards = () => {
+      const width = window.innerWidth;
+      if (width <= 768) return 1;
+      if (width <= 992) return 2;
+      return 4;
+    };
+
+    const updateSlider = () => {
+      const cards = reviewsTrack.querySelectorAll('.review-slide-item');
+      const totalCards = cards.length;
+      const visibleCards = getVisibleCards();
+      const maxSlide = Math.max(0, totalCards - visibleCards);
+
+      if (currentSlide > maxSlide) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = maxSlide;
+
+      const cardWidth = cards[0].getBoundingClientRect().width + 20; // 20px gap
+      reviewsTrack.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+    };
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide++;
+      updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide--;
+      updateSlider();
+    });
+
+    window.addEventListener('resize', updateSlider);
+
+    // Auto Scroll Every 5 Seconds
+    setInterval(() => {
+      currentSlide++;
+      updateSlider();
+    }, 5000);
+  }
 
   // Accommodation Filter Logic
   const filterBtns = document.querySelectorAll('.filter-btn:not(.gallery-filter-btn)');
