@@ -1,4 +1,4 @@
-/* Aeronest Girls PG & Luxury Apartments - Master Stylesheet (v12 Booking Modal Mobile Responsive Fix) */
+/* Aeronest Girls PG & Luxury Apartments - Master Stylesheet (v13 Zero-Scroll Compact Modal Fix) */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
@@ -1804,7 +1804,7 @@ img {
   font-size: 0.82rem;
 }
 
-/* === BOOKING MODAL DIALOG RESPONSIVE FIX === */
+/* === ZERO-SCROLL COMPACT MODAL DIALOG === */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1816,12 +1816,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 14px;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transition: var(--transition-normal);
-  overflow-y: auto;
 }
 
 .modal-overlay.active {
@@ -1832,17 +1831,15 @@ img {
 .modal-content {
   background: #ffffff;
   width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: var(--radius-lg);
-  padding: 30px 24px;
+  max-width: 440px;
+  border-radius: 22px;
+  padding: 24px 20px;
   box-shadow: var(--shadow-lg);
   position: relative;
   transform: translateY(20px);
   transition: var(--transition-normal);
   margin: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
 }
 
 .modal-overlay.active .modal-content {
@@ -1851,17 +1848,17 @@ img {
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   background: var(--bg-light);
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   color: var(--text-muted);
   transition: var(--transition-fast);
@@ -1874,21 +1871,64 @@ img {
 }
 
 .modal-header {
-  margin-bottom: 22px;
-  padding-right: 36px;
+  margin-bottom: 14px;
+  padding-right: 32px;
 }
 
 .modal-header h3 {
   font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--primary-navy);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  line-height: 1.2;
 }
 
 .modal-header p {
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.modal-form label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.modal-input {
+  color: var(--primary-navy) !important;
+  border-color: var(--border-light) !important;
+  background: #f8fafc !important;
+  padding: 9px 12px !important;
+  font-size: 0.88rem !important;
+  border-radius: 10px !important;
+}
+
+.modal-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.modal-submit-btn {
+  padding: 11px !important;
+  font-size: 0.9rem !important;
+  margin-top: 4px;
 }
 
 /* Mobile Sticky Bottom Floating Action Bar */
@@ -2059,23 +2099,38 @@ img {
     aspect-ratio: 4/3;
   }
 
-  /* Mobile Modal Responsiveness */
+  /* Compact Zero-Scroll Mobile Modal */
   .modal-overlay {
     padding: 10px;
   }
 
   .modal-content {
-    padding: 22px 16px;
-    max-height: 86vh;
-    border-radius: 22px;
+    padding: 18px 14px;
+    max-width: 100%;
+    border-radius: 18px;
   }
 
   .modal-header h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .modal-header p {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
+  }
+
+  .modal-form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .modal-input {
+    padding: 8px 10px !important;
+    font-size: 0.84rem !important;
+  }
+
+  .modal-submit-btn {
+    padding: 10px !important;
+    font-size: 0.86rem !important;
   }
   
   .mobile-bottom-bar {
