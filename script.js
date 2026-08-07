@@ -1,13 +1,13 @@
-// Aeronest Girls PG & Luxury Apartments - Master Script (v2 Animation & Gallery)
+// Aeronest Girls PG & Luxury Apartments - Master Script (v5 Redesign & 5-Menu Layout)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS (Animate On Scroll) Library
+  // Initialize AOS (Animate On Scroll)
   if (typeof AOS !== 'undefined') {
     AOS.init({
       duration: 800,
       easing: 'ease-in-out',
       once: true,
-      offset: 100
+      offset: 80
     });
   }
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Accommodation Filter Logic
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  const filterBtns = document.querySelectorAll('.filter-btn:not(.gallery-filter-btn)');
   const roomCards = document.querySelectorAll('.room-card');
 
   filterBtns.forEach(btn => {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Gallery Filter Logic
+  // Photo Gallery Filter Logic
   const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
   const galleryCards = document.querySelectorAll('.gallery-card');
 
@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Heart Likes Counter Logic
+  // Heart Likes Counter
   const heartBtns = document.querySelectorAll('.heart-like-btn');
   heartBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent lightbox trigger when tapping heart
+      e.stopPropagation();
       const countSpan = btn.querySelector('.like-count');
       let currentCount = parseInt(countSpan.innerText, 10);
       
@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         countSpan.innerText = currentCount + 1;
       } else {
         btn.classList.remove('liked');
-        btn.style.background = 'rgba(225, 29, 72, 0.85)';
+        btn.style.background = 'rgba(225, 29, 72, 0.88)';
         countSpan.innerText = currentCount - 1;
       }
     });
   });
 
-  // Lightbox Modal Handling
+  // Lightbox Modal for Photo Gallery
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // FAQ Accordion Logic
+  // FAQ Accordion
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Form Submit Handler -> WhatsApp Integration
+  // Booking Form Submit Handler -> WhatsApp Integration
   const bookingForm = document.getElementById('bookingForm');
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hero Quick Inquiry Form
+  // Hero Quick Form Handler
   const heroForm = document.getElementById('heroQuickForm');
   if (heroForm) {
     heroForm.addEventListener('submit', (e) => {
