@@ -1,6 +1,16 @@
-// Aeronest Girls PG & Luxury Apartments - Interactive Scripts
+// Aeronest Girls PG & Luxury Apartments - Master Script (v2 Animation & Gallery)
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize AOS (Animate On Scroll) Library
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  }
+
   // Mobile Nav Toggle
   const mobileToggle = document.getElementById('mobileNavToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -16,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close menu when clicking link
     mobileMenu.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
@@ -25,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Navbar Scroll effect
+  // Navbar Scroll Styling
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
@@ -59,21 +68,102 @@ document.addEventListener('DOMContentLoaded', () => {
           card.style.transform = 'translateY(20px)';
           setTimeout(() => {
             card.style.display = 'none';
-          }, 300);
+          }, 250);
         }
       });
     });
   });
 
+  // Gallery Filter Logic
+  const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryCards = document.querySelectorAll('.gallery-card');
+
+  galleryFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      galleryFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-gallery-filter');
+
+      galleryCards.forEach(card => {
+        const category = card.getAttribute('data-gallery-cat');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.9)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 250);
+        }
+      });
+    });
+  });
+
+  // Heart Likes Counter Logic
+  const heartBtns = document.querySelectorAll('.heart-like-btn');
+  heartBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent lightbox trigger when tapping heart
+      const countSpan = btn.querySelector('.like-count');
+      let currentCount = parseInt(countSpan.innerText, 10);
+      
+      if (!btn.classList.contains('liked')) {
+        btn.classList.add('liked');
+        btn.style.background = '#e11d48';
+        countSpan.innerText = currentCount + 1;
+      } else {
+        btn.classList.remove('liked');
+        btn.style.background = 'rgba(225, 29, 72, 0.85)';
+        countSpan.innerText = currentCount - 1;
+      }
+    });
+  });
+
+  // Lightbox Modal Handling
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  galleryCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.querySelector('img').getAttribute('src');
+      const title = card.querySelector('.gallery-title-badge').innerText;
+
+      if (lightboxImg && lightboxModal) {
+        lightboxImg.setAttribute('src', imgSrc);
+        lightboxCaption.innerText = title;
+        lightboxModal.classList.add('active');
+      }
+    });
+  });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', () => {
+      lightboxModal.classList.remove('active');
+    });
+  }
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        lightboxModal.classList.remove('active');
+      }
+    });
+  }
+
   // FAQ Accordion Logic
   const faqItems = document.querySelectorAll('.faq-item');
-
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     question.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
 
-      // Close all other items
       faqItems.forEach(otherItem => {
         otherItem.classList.remove('active');
       });
@@ -89,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (faqSearch) {
     faqSearch.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
-
       faqItems.forEach(item => {
         const questionText = item.querySelector('.faq-question h4').innerText.toLowerCase();
         const answerText = item.querySelector('.faq-answer p').innerText.toLowerCase();
@@ -103,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Modal Dialog Logic
+  // Booking Visit Modal
   const modalOverlay = document.getElementById('bookingModal');
   const modalClose = document.getElementById('modalClose');
   const openModalBtns = document.querySelectorAll('.open-modal-btn');
@@ -145,9 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const date = document.getElementById('modalMoveDate').value;
       const notes = document.getElementById('modalNotes').value.trim();
 
-      const text = `Hello Aeronest Team!%0A%0AI would like to inquire/book a visit.%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Option Interested:* ${encodeURIComponent(option)}%0A*Expected Move-in:* ${encodeURIComponent(date)}%0A*Notes:* ${encodeURIComponent(notes)}`;
+      const text = `Hello Aeronest Team!%0A%0AI'd like to schedule a visit.%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Option:* ${encodeURIComponent(option)}%0A*Move-in Date:* ${encodeURIComponent(date)}%0A*Notes:* ${encodeURIComponent(notes)}`;
 
-      // Open WhatsApp to 6001351178
       const whatsappUrl = `https://wa.me/916001351178?text=${text}`;
       window.open(whatsappUrl, '_blank');
 
@@ -156,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hero Quick Inquiry Form -> WhatsApp Integration
+  // Hero Quick Inquiry Form
   const heroForm = document.getElementById('heroQuickForm');
   if (heroForm) {
     heroForm.addEventListener('submit', (e) => {
@@ -164,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = document.getElementById('heroPhone').value.trim();
       const option = document.getElementById('heroOption').value;
 
-      const text = `Hello Aeronest Team!%0A%0AI'm interested in *${encodeURIComponent(option)}* near LGBI Guwahati Airport.%0A*My Phone:* ${encodeURIComponent(phone)}%0APlease contact me with details and availability.`;
+      const text = `Hello Aeronest Team!%0A%0AI am interested in *${encodeURIComponent(option)}* near LGBI Guwahati Airport.%0A*My Phone:* ${encodeURIComponent(phone)}%0APlease contact me with details.`;
 
       const whatsappUrl = `https://wa.me/916001351178?text=${text}`;
       window.open(whatsappUrl, '_blank');
