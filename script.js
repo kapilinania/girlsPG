@@ -121,28 +121,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Photo Gallery Filter Logic
+  // Photo Gallery Filter & Lightbox Logic
   const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
   const galleryCards = document.querySelectorAll('.gallery-card');
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxSubcaption = document.getElementById('lightboxSubcaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxWhatsappBtn = document.getElementById('lightboxWhatsappBtn');
 
+  let currentActiveCards = Array.from(galleryCards);
+  let currentLightboxIndex = 0;
+
+  // Filter Logic
   galleryFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       galleryFilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const filter = btn.getAttribute('data-gallery-filter');
+      currentActiveCards = [];
 
       galleryCards.forEach(card => {
         const category = card.getAttribute('data-gallery-cat');
         if (filter === 'all' || category === filter) {
           card.style.display = 'block';
+          currentActiveCards.push(card);
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'scale(1)';
           }, 50);
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'scale(0.9)';
+          card.style.transform = 'scale(0.92)';
           setTimeout(() => {
             card.style.display = 'none';
           }, 250);
@@ -161,47 +177,148 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (!btn.classList.contains('liked')) {
         btn.classList.add('liked');
-        btn.style.background = '#e11d48';
         countSpan.innerText = currentCount + 1;
       } else {
         btn.classList.remove('liked');
-        btn.style.background = 'rgba(225, 29, 72, 0.88)';
         countSpan.innerText = currentCount - 1;
       }
     });
   });
 
-  // Lightbox Modal for Photo Gallery
-  const lightboxModal = document.getElementById('lightboxModal');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
-  const lightboxClose = document.getElementById('lightboxClose');
+  // Lightbox Modal Functions
+  function updateLightboxData(index) {
+    if (currentActiveCards.length === 0) return;
 
-  galleryCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const imgSrc = card.querySelector('img').getAttribute('src');
-      const title = card.querySelector('.gallery-title-badge').innerText;
+    if (index < 0) {
+      currentLightboxIndex = currentActiveCards.length - 1;
+    } else if (index >= currentActiveCards.length) {
+      currentLightboxIndex = 0;
+    } else {
+      currentLightboxIndex = index;
+    }
 
-      if (lightboxImg && lightboxModal) {
+    const targetCard = currentActiveCards[currentLightboxIndex];
+    if (!targetCard) return;
+
+    const imgSrc = targetCard.querySelector('img').getAttribute('src');
+    const title = targetCard.querySelector('.gallery-title-badge').innerText;
+    const subcaption = targetCard.getAttribute('data-sub') || '';
+
+    // Smooth image transition
+    if (lightboxImg) {
+      lightboxImg.style.opacity = '0.3';
+      lightboxImg.style.transform = 'scale(0.96)';
+      
+      setTimeout(() => {
         lightboxImg.setAttribute('src', imgSrc);
-        lightboxCaption.innerText = title;
-        lightboxModal.classList.add('active');
-      }
+        lightboxImg.setAttribute('alt', title);
+        lightboxImg.style.opacity = '1';
+        lightboxImg.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    if (lightboxCaption) lightboxCaption.innerText = title;
+    if (lightboxSubcaption) lightboxSubcaption.innerText = subcaption;
+    if (lightboxCounter) {
+      lightboxCounter.innerText = `Photo ${currentLightboxIndex + 1} of ${currentActiveCards.length}`;
+    }
+
+    if (lightboxWhatsappBtn) {
+      const waText = encodeURIComponent(`Hello Aeronest! I am viewing your photo gallery and interested in: "${title}". Can you share details & pricing?`);
+      lightboxWhatsappBtn.setAttribute('href', `https://wa.me/916001351178?text=${waText}`);
+    }
+  }
+
+  function openLightbox(card) {
+    const cardIndexInActive = currentActiveCards.indexOf(card);
+    currentLightboxIndex = cardIndexInActive >= 0 ? cardIndexInActive : 0;
+    
+    updateLightboxData(currentLightboxIndex);
+
+    if (lightboxModal) {
+      lightboxModal.classList.add('active');
+      lightboxModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightboxModal() {
+    if (lightboxModal) {
+      lightboxModal.classList.remove('active');
+      lightboxModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Open Lightbox on card or zoom click
+  galleryCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Avoid opening if clicking directly on like button
+      if (e.target.closest('.heart-like-btn')) return;
+      openLightbox(card);
     });
   });
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', () => {
-      lightboxModal.classList.remove('active');
+  // Prev / Next Navigation
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateLightboxData(currentLightboxIndex - 1);
     });
   }
 
-  if (lightboxModal) {
-    lightboxModal.addEventListener('click', (e) => {
-      if (e.target === lightboxModal) {
-        lightboxModal.classList.remove('active');
-      }
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateLightboxData(currentLightboxIndex + 1);
     });
+  }
+
+  // Close handlers
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightboxModal);
+  }
+  if (lightboxBackdrop) {
+    lightboxBackdrop.addEventListener('click', closeLightboxModal);
+  }
+
+  // Keyboard Navigation (Left / Right Arrows & Escape)
+  document.addEventListener('keydown', (e) => {
+    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeLightboxModal();
+    } else if (e.key === 'ArrowLeft') {
+      updateLightboxData(currentLightboxIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      updateLightboxData(currentLightboxIndex + 1);
+    }
+  });
+
+  // Touch Swipe for Mobile Lightbox Navigation
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+      // Swiped Left -> Next Image
+      updateLightboxData(currentLightboxIndex + 1);
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+      // Swiped Right -> Previous Image
+      updateLightboxData(currentLightboxIndex - 1);
+    }
   }
 
   // FAQ Accordion

@@ -132,6 +132,7 @@
         <li><a href="#why-aeronest" class="nav-link">Why Us</a></li>
         <li><a href="#accommodations" class="nav-link">Rooms & Flats</a></li>
         <li><a href="#amenities" class="nav-link">Amenities</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
         <li><a href="#faq" class="nav-link">FAQs</a></li>
         <li><a href="#location" class="nav-link">Location</a></li>
       </ul>
@@ -158,6 +159,7 @@
     <a href="#why-aeronest" class="nav-link">Why Us</a>
     <a href="#accommodations" class="nav-link">Rooms & Flats</a>
     <a href="#amenities" class="nav-link">Amenities</a>
+    <a href="#gallery" class="nav-link">Gallery</a>
     <a href="#faq" class="nav-link">FAQs</a>
     <a href="#location" class="nav-link">Location & Directions</a>
     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
@@ -592,6 +594,243 @@
     </div>
   </section>
 
+  <!-- Photo & Property Gallery Section -->
+  <section class="section section-bg-alt" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Visual Showcase</span>
+        <h2 class="section-title">Explore Aeronest Living Spaces</h2>
+        <p class="section-subtitle">
+          Take a virtual tour of our premium PG rooms, independent luxury flats, self-cooking kitchen, gym, and outdoor surroundings.
+        </p>
+      </div>
+
+      <!-- Gallery Filter Tabs -->
+      <div class="gallery-filter-container">
+        <button class="gallery-filter-btn active" data-gallery-filter="all">
+          <i class="fa-solid fa-border-all"></i> All Photos
+        </button>
+        <button class="gallery-filter-btn" data-gallery-filter="rooms">
+          <i class="fa-solid fa-bed"></i> PG Rooms
+        </button>
+        <button class="gallery-filter-btn" data-gallery-filter="flats">
+          <i class="fa-solid fa-building"></i> Luxury Flats
+        </button>
+        <button class="gallery-filter-btn" data-gallery-filter="amenities">
+          <i class="fa-solid fa-dumbbell"></i> Facilities & Kitchen
+        </button>
+        <button class="gallery-filter-btn" data-gallery-filter="outdoors">
+          <i class="fa-solid fa-tree"></i> Outdoors & Views
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        
+        <!-- Card 1 -->
+        <div class="gallery-card" data-gallery-cat="rooms" data-sub="Fully Furnished • AC & Study Desk" data-index="0">
+          <img src="images/private_pg.jpg" alt="Luxury Single Private PG Room at Aeronest" loading="lazy">
+          <div class="gallery-badge-top">PG Room</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Luxury Single Private Room</span>
+              <span class="gallery-sub-badge">Fully Furnished • AC & Study Desk</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">48</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="gallery-card" data-gallery-cat="rooms" data-sub="Dual Wardrobes & Individual Desks" data-index="1">
+          <img src="images/shared_pg.jpg" alt="Spacious Twin Sharing PG Room at Aeronest" loading="lazy">
+          <div class="gallery-badge-top">PG Room</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Spacious Twin Sharing Room</span>
+              <span class="gallery-sub-badge">Dual Wardrobes & Individual Desks</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">36</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="gallery-card" data-gallery-cat="flats" data-sub="Sofa Set, Dining & LED TV Setup" data-index="2">
+          <img src="images/luxury_flat.jpg" alt="2BHK and 3BHK Luxury Apartment Living Room" loading="lazy">
+          <div class="gallery-badge-top">Luxury Flat</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Independent 2BHK / 3BHK Living Room</span>
+              <span class="gallery-sub-badge">Sofa Set, Dining & LED TV Setup</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">52</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="gallery-card" data-gallery-cat="amenities" data-sub="Gas Cooktop, Microwave & Refrigerator" data-index="3">
+          <img src="images/kitchen.jpg" alt="24/7 Self-Cooking Kitchen Facility" loading="lazy">
+          <div class="gallery-badge-top">Facility</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">24/7 Self-Cooking Kitchen</span>
+              <span class="gallery-sub-badge">Gas Cooktop, Microwave & Refrigerator</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">64</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="gallery-card" data-gallery-cat="amenities" data-sub="Treadmill, Weights & Workout Zone" data-index="4">
+          <img src="images/gym.jpg" alt="In-House Fitness Gym at Aeronest" loading="lazy">
+          <div class="gallery-badge-top">Facility</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">In-House Fitness Gym</span>
+              <span class="gallery-sub-badge">Treadmill, Weights & Workout Zone</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">41</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="gallery-card" data-gallery-cat="outdoors" data-sub="Fresh Air & Airport View" data-index="5">
+          <img src="images/balcony.jpg" alt="Scenic Private Balcony View" loading="lazy">
+          <div class="gallery-badge-top">Balcony</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Scenic Private Balcony</span>
+              <span class="gallery-sub-badge">Fresh Air & Airport View</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">29</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="gallery-card" data-gallery-cat="rooms" data-sub="24/7 Hot Water Geyser & Western Setup" data-index="6">
+          <img src="images/bathroom.jpg" alt="Attached Modern Clean Bathroom" loading="lazy">
+          <div class="gallery-badge-top">PG Room</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Attached Modern Bathroom</span>
+              <span class="gallery-sub-badge">24/7 Hot Water Geyser & Western Setup</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">33</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="gallery-card" data-gallery-cat="rooms" data-sub="Ergonomic Chair & Ambient Lighting" data-index="7">
+          <img src="images/cozy_corner.jpg" alt="Study & Work Lounge Corner" loading="lazy">
+          <div class="gallery-badge-top">PG Room</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Quiet Work & Study Nook</span>
+              <span class="gallery-sub-badge">Ergonomic Chair & Ambient Lighting</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">38</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="gallery-card" data-gallery-cat="outdoors" data-sub="Morning Jogging & Green Environment" data-index="8">
+          <img src="images/garden.jpg" alt="Landscaped Green Garden & Walkway" loading="lazy">
+          <div class="gallery-badge-top">Outdoors</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Landscaped Garden & Walkway</span>
+              <span class="gallery-sub-badge">Morning Jogging & Green Environment</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">45</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="gallery-card" data-gallery-cat="outdoors" data-sub="24/7 Security Desk & CCTV Monitored" data-index="9">
+          <img src="images/hero_exterior.jpg" alt="Gated Complex Entrance & Security Desk" loading="lazy">
+          <div class="gallery-badge-top">Outdoors</div>
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <span class="gallery-title-badge">Secure Gated Complex Entrance</span>
+              <span class="gallery-sub-badge">24/7 Security Desk & CCTV Monitored</span>
+            </div>
+            <div class="gallery-actions">
+              <button class="heart-like-btn" aria-label="Like this photo">
+                <i class="fa-solid fa-heart"></i> <span class="like-count">57</span>
+              </button>
+              <button class="gallery-zoom-btn" aria-label="Expand photo">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ Section (Searchable Accordion for SEO) -->
   <section class="section section-bg-alt" id="faq">
     <div class="container">
@@ -781,6 +1020,7 @@
             <li><a href="#accommodations">Private PG Rooms</a></li>
             <li><a href="#accommodations">Shared PG Rooms</a></li>
             <li><a href="#accommodations">2BHK & 3BHK Flats</a></li>
+            <li><a href="#gallery">Photo Gallery</a></li>
             <li><a href="#amenities">Facilities & Gym</a></li>
             <li><a href="#faq">Frequently Asked Questions</a></li>
           </ul>
@@ -865,6 +1105,40 @@
       <a href="https://share.google/jCpwHCdIeThfWF4xC" target="_blank" class="mobile-bar-btn map">
         <i class="fa-solid fa-map-location-dot"></i> Directions
       </a>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal for Photo Gallery -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close Lightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <button class="lightbox-nav-btn lightbox-prev-btn" id="lightboxPrev" aria-label="Previous Image">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      
+      <button class="lightbox-nav-btn lightbox-next-btn" id="lightboxNext" aria-label="Next Image">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="lightbox-content">
+        <div class="lightbox-img-wrapper">
+          <img id="lightboxImg" src="" alt="Gallery Preview">
+        </div>
+        <div class="lightbox-footer">
+          <div class="lightbox-details">
+            <span class="lightbox-counter" id="lightboxCounter">Photo 1 of 10</span>
+            <h3 class="lightbox-caption" id="lightboxCaption">Photo Title</h3>
+            <span class="lightbox-subcaption" id="lightboxSubcaption">Category Detail</span>
+          </div>
+          <a href="#" id="lightboxWhatsappBtn" target="_blank" rel="noopener" class="btn-whatsapp btn-sm">
+            <i class="fa-brands fa-whatsapp"></i> Inquire About This Room
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
