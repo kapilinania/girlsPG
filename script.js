@@ -138,6 +138,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentActiveCards = Array.from(galleryCards);
   let currentLightboxIndex = 0;
 
+  // Lazy Image Skeleton & Smooth Fade-in Handler
+  const galleryImages = document.querySelectorAll('.gallery-card img');
+  galleryImages.forEach(img => {
+    const card = img.closest('.gallery-card');
+    function handleImgLoad() {
+      img.classList.add('is-loaded');
+      if (card) {
+        card.classList.remove('skeleton-loading');
+      }
+    }
+
+    if (img.complete && img.naturalWidth !== 0) {
+      handleImgLoad();
+    } else {
+      img.addEventListener('load', handleImgLoad);
+      img.addEventListener('error', handleImgLoad);
+    }
+  });
+
   // Filter Logic
   galleryFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
