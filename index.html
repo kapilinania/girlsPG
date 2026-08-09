@@ -176,19 +176,20 @@
   <section class="hero">
     <!-- Interactive Background Image Slider -->
     <div class="hero-bg-slider" id="heroBgSlider">
-      <div class="hero-slide active" style="background-image: url('images/slider/1.png');"></div>
-      <div class="hero-slide" style="background-image: url('images/slider/2.png');"></div>
-      <div class="hero-slide" style="background-image: url('images/slider/3.png');"></div>
+      <div class="hero-slide active" style="background-image: url('images/inside/10.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/inside/13.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/inside/4.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/inside/14.jpg');"></div>
     </div>
 
     <!-- Dark Gradient Overlay for Contrast & Readability -->
     <div class="hero-overlay"></div>
 
     <!-- Hero Background Slider Arrow Navigation Controls -->
-    <button class="hero-slider-nav hero-slider-prev" id="heroSliderPrev" aria-label="Previous Slide">
+    <button class="hero-slider-nav hero-slider-prev" id="heroSliderPrev" aria-label="Previous Background Slide">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <button class="hero-slider-nav hero-slider-next" id="heroSliderNext" aria-label="Next Slide">
+    <button class="hero-slider-nav hero-slider-next" id="heroSliderNext" aria-label="Next Background Slide">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
 
@@ -197,6 +198,7 @@
       <span class="hero-dot active" data-slide="0" aria-label="Slide 1"></span>
       <span class="hero-dot" data-slide="1" aria-label="Slide 2"></span>
       <span class="hero-dot" data-slide="2" aria-label="Slide 3"></span>
+      <span class="hero-dot" data-slide="3" aria-label="Slide 4"></span>
     </div>
 
     <div class="hero-container">
@@ -219,8 +221,8 @@
           <a href="#" class="btn-primary open-modal-btn" data-room-target="Private PG Room">
             <i class="fa-solid fa-calendar-check"></i> Book a Visit
           </a>
-          <a href="https://wa.me/916001351178?text=Hello%20Aeronest!%20I%20want%20to%20inquire%20about%20availability." target="_blank" rel="noopener" class="btn-whatsapp">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp Inquiry
+          <a href="tel:6001351178" class="btn-secondary">
+            <i class="fa-solid fa-phone"></i> Call 6001351178
           </a>
         </div>
 
@@ -232,29 +234,71 @@
         </div>
       </div>
 
-      <!-- Ultra-Clean Glass Inquiry Card Widget -->
-      <div class="hero-card-widget minimal-glass-card">
-        <h3><i class="fa-solid fa-bolt"></i> Instant Inquiry</h3>
-        <p class="minimal-card-sub">Check room rates & availability directly</p>
-        
-        <form class="hero-quick-form" id="heroQuickForm">
-          <div class="form-group">
-            <label for="heroOption">Looking For</label>
-            <select id="heroOption" class="form-select" required>
-              <option value="Private PG Room">Private PG Room (Single)</option>
-              <option value="Shared PG Room">Shared PG Room (2 Sharing)</option>
-              <option value="2 BHK Flat">2 BHK Independent Rental Flat</option>
-              <option value="3 BHK Luxury Flat">3 BHK Luxury Residence</option>
-            </select>
+      <!-- Screenshot-Matched Interactive Card Widget (Top Slider + Bottom Form) -->
+      <div class="hero-card-widget screenshot-style-card">
+        <!-- Top Image Slider Frame -->
+        <div class="card-slider-frame" id="cardSliderFrame">
+          <div class="card-slide active" style="background-image: url('images/inside/13.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-fire-burner"></i> 24/7 Self-Cooking Kitchen</span>
           </div>
-          <div class="form-group">
-            <label for="heroPhone">Mobile Number</label>
-            <input type="tel" id="heroPhone" class="form-input" placeholder="Enter your mobile number" required>
+          <div class="card-slide" style="background-image: url('images/inside/10.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-bed"></i> Master PG Bedroom Suite</span>
           </div>
-          <button type="submit" class="btn-primary btn-block">
-            <i class="fa-brands fa-whatsapp"></i> Check Availability
+          <div class="card-slide" style="background-image: url('images/inside/4.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-couch"></i> Spacious Flat Living Room</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/inside/11.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-door-closed"></i> Furnished Room & Wardrobe</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/inside/7.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-bath"></i> Attached Western Bathroom</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/inside/14.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-utensils"></i> Open Kitchen & Dining</span>
+          </div>
+
+          <!-- Slider Navigation Arrows -->
+          <button type="button" class="card-slider-arrow card-slider-prev" id="cardSliderPrev" aria-label="Previous Photo">
+            <i class="fa-solid fa-chevron-left"></i>
           </button>
-        </form>
+          <button type="button" class="card-slider-arrow card-slider-next" id="cardSliderNext" aria-label="Next Photo">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <!-- Slider Capsule Pagination Dots -->
+          <div class="card-slider-dots" id="cardSliderDots">
+            <span class="card-dot active" data-card-slide="0"></span>
+            <span class="card-dot" data-card-slide="1"></span>
+            <span class="card-dot" data-card-slide="2"></span>
+            <span class="card-dot" data-card-slide="3"></span>
+            <span class="card-dot" data-card-slide="4"></span>
+            <span class="card-dot" data-card-slide="5"></span>
+          </div>
+        </div>
+
+        <!-- Bottom Form Container -->
+        <div class="card-form-container">
+          <form class="hero-quick-form" id="heroQuickForm">
+            <div class="form-group">
+              <label for="heroOption" class="form-label-bold">SELECT ACCOMMODATION</label>
+              <select id="heroOption" class="form-select-dark" required>
+                <option value="Private Single PG Room">Private Single PG Room</option>
+                <option value="Shared PG Room">Shared PG Room (2 Sharing)</option>
+                <option value="2 BHK Flat">2 BHK Independent Rental Flat</option>
+                <option value="3 BHK Luxury Flat">3 BHK Luxury Residence</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="heroPhone" class="form-label-bold">MOBILE NUMBER</label>
+              <input type="tel" id="heroPhone" class="form-input-dark" placeholder="Enter phone number" required>
+            </div>
+
+            <button type="submit" class="btn-green-loud">
+              <i class="fa-brands fa-whatsapp"></i> Check Rates & Availability
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -384,7 +428,7 @@
         <!-- Private PG Room -->
         <div class="room-card" data-category="private">
           <div class="room-image-wrapper">
-            <img src="images/private_pg.jpg" alt="Private PG Room for Girls near Guwahati Airport">
+            <img src="images/inside/10.jpg" alt="Private Single PG Room for Girls opposite Guwahati Airport">
             <span class="room-tag">Private PG Room</span>
           </div>
           <div class="room-content">
@@ -413,7 +457,7 @@
         <!-- Shared PG Room -->
         <div class="room-card" data-category="shared">
           <div class="room-image-wrapper">
-            <img src="images/shared_pg.jpg" alt="Shared Girls PG Room Azara Guwahati Airport">
+            <img src="images/inside/11.jpg" alt="Shared Girls PG Room Azara Guwahati Airport">
             <span class="room-tag">Shared PG Room</span>
           </div>
           <div class="room-content">
@@ -442,7 +486,7 @@
         <!-- 2BHK Flat -->
         <div class="room-card" data-category="flat2bhk">
           <div class="room-image-wrapper">
-            <img src="images/luxury_flat.jpg" alt="2BHK Flat on rent opposite Guwahati Airport">
+            <img src="images/inside/4.jpg" alt="2BHK Flat on rent opposite Guwahati Airport">
             <span class="room-tag">2 BHK Rental Flat</span>
           </div>
           <div class="room-content">
@@ -471,7 +515,7 @@
         <!-- 3BHK Luxury Flat -->
         <div class="room-card" data-category="flat3bhk">
           <div class="room-image-wrapper">
-            <img src="images/hero.jpg" alt="3BHK Luxury Apartment opposite Guwahati Airport">
+            <img src="images/inside/5.jpg" alt="3BHK Luxury Apartment opposite Guwahati Airport">
             <span class="room-tag">3 BHK Luxury Flat</span>
           </div>
           <div class="room-content">
@@ -580,17 +624,17 @@
       <!-- Showcase Visual Cards -->
       <div class="amenities-showcase">
         <div class="showcase-card">
-          <img src="images/kitchen.jpg" alt="24/7 Self cooking kitchen at Aeronest Girls PG">
+          <img src="images/inside/13.jpg" alt="24/7 Self cooking kitchen counter and gas stove at Aeronest Girls PG">
           <div class="showcase-overlay">
             <h3>24/7 Self-Cooking Kitchen Access</h3>
             <p>Cook breakfast, dinner, or late-night shift snacks whenever your roster ends.</p>
           </div>
         </div>
         <div class="showcase-card">
-          <img src="images/gym.jpg" alt="In-house gym inside Aeronest apartment complex">
+          <img src="images/inside/14.jpg" alt="Open Kitchen and Dining Space at Aeronest Girls PG">
           <div class="showcase-overlay">
-            <h3>In-House Fitness Gym</h3>
-            <p>Stay active with modern workout equipment right inside your complex.</p>
+            <h3>Dining & Kitchen Space</h3>
+            <p>Spacious marble-floored kitchen and dining area for residents.</p>
           </div>
         </div>
       </div>

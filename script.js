@@ -563,6 +563,88 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroTimer();
   }
 
+  // Hero Card Widget Top Image Slider Logic
+  const cardSlides = document.querySelectorAll('.card-slide');
+  const cardDots = document.querySelectorAll('.card-dot');
+  const cardPrevBtn = document.getElementById('cardSliderPrev');
+  const cardNextBtn = document.getElementById('cardSliderNext');
+
+  if (cardSlides.length > 0) {
+    let currentCardSlideIndex = 0;
+    let cardSliderTimer = null;
+
+    function showCardSlide(index) {
+      if (index < 0) {
+        currentCardSlideIndex = cardSlides.length - 1;
+      } else if (index >= cardSlides.length) {
+        currentCardSlideIndex = 0;
+      } else {
+        currentCardSlideIndex = index;
+      }
+
+      cardSlides.forEach((slide, i) => {
+        if (i === currentCardSlideIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      cardDots.forEach((dot, i) => {
+        if (i === currentCardSlideIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextCardSlide() {
+      showCardSlide(currentCardSlideIndex + 1);
+    }
+
+    function prevCardSlide() {
+      showCardSlide(currentCardSlideIndex - 1);
+    }
+
+    function startCardTimer() {
+      stopCardTimer();
+      cardSliderTimer = setInterval(nextCardSlide, 4000);
+    }
+
+    function stopCardTimer() {
+      if (cardSliderTimer) {
+        clearInterval(cardSliderTimer);
+        cardSliderTimer = null;
+      }
+    }
+
+    if (cardNextBtn) {
+      cardNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextCardSlide();
+        startCardTimer();
+      });
+    }
+
+    if (cardPrevBtn) {
+      cardPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevCardSlide();
+        startCardTimer();
+      });
+    }
+
+    cardDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showCardSlide(i);
+        startCardTimer();
+      });
+    });
+
+    startCardTimer();
+  }
+
   // Interactive Hero Category Selector Pills
   const heroCatPills = document.querySelectorAll('.hero-cat-pill');
   const heroOptionSelect = document.getElementById('heroOption');
