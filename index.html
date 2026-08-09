@@ -174,66 +174,69 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <!-- Interactive Background Image Slider -->
+    <div class="hero-bg-slider" id="heroBgSlider">
+      <div class="hero-slide active" style="background-image: url('images/slider/1.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/2.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/3.png');"></div>
+    </div>
+
+    <!-- Dark Gradient Overlay for Contrast & Readability -->
     <div class="hero-overlay"></div>
+
+    <!-- Hero Background Slider Arrow Navigation Controls -->
+    <button class="hero-slider-nav hero-slider-prev" id="heroSliderPrev" aria-label="Previous Slide">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="hero-slider-nav hero-slider-next" id="heroSliderNext" aria-label="Next Slide">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- Slide Indicators / Dots -->
+    <div class="hero-slider-dots" id="heroSliderDots">
+      <span class="hero-dot active" data-slide="0" aria-label="Slide 1"></span>
+      <span class="hero-dot" data-slide="1" aria-label="Slide 2"></span>
+      <span class="hero-dot" data-slide="2" aria-label="Slide 3"></span>
+    </div>
+
     <div class="hero-container">
       <div class="hero-content">
-        <div class="hero-tag">
-          <i class="fa-solid fa-location-crosshairs"></i> Directly Opposite LGBI Airport Guwahati
+        <!-- Single Clean Badge -->
+        <div class="hero-badge-clean" id="triggerDisclaimerBtn" title="Click to view disclaimer policy">
+          <i class="fa-solid fa-person-dress"></i>
+          <span>Exclusively Girls PG & Female Flats • Opposite Airport</span>
         </div>
+
         <h1 class="hero-title">
-          Safe, Luxury & Independent Living <span>Exclusively for Working Women</span>
+          Luxury Living <span>Only For Girls & Women</span>
         </h1>
+        
         <p class="hero-subtitle">
-          Designed specifically for flight attendants, pilots, airport staff, shift professionals, and working women. Enjoy fully furnished private PG rooms and independent 2BHK/3BHK flats with round-the-clock entry, 24/7 self-cooking kitchen, and total peace of mind.
+          Safe PG rooms & independent 2BHK/3BHK flats with 24/7 entry, self-cooking kitchen & top safety opposite Guwahati Airport.
         </p>
         
         <div class="hero-cta-group">
           <a href="#" class="btn-primary open-modal-btn" data-room-target="Private PG Room">
             <i class="fa-solid fa-calendar-check"></i> Book a Visit
           </a>
-          <a href="tel:6001351178" class="btn-secondary">
-            <i class="fa-solid fa-phone"></i> Call 6001351178
-          </a>
-          <a href="https://share.google/jCpwHCdIeThfWF4xC" target="_blank" class="btn-secondary">
-            <i class="fa-solid fa-map-location-dot"></i> Get Directions
+          <a href="https://wa.me/916001351178?text=Hello%20Aeronest!%20I%20want%20to%20inquire%20about%20availability." target="_blank" rel="noopener" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Inquiry
           </a>
         </div>
 
-        <div class="hero-trust-bar">
-          <div class="trust-item">
-            <div class="trust-icon">
-              <i class="fa-solid fa-clock"></i>
-            </div>
-            <div class="trust-text">
-              <h4>24/7 Entry & Exit</h4>
-              <p>No Night Curfews</p>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <div class="trust-text">
-              <h4>Gated 24/7 Safety</h4>
-              <p>Guards & CCTV Access</p>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <i class="fa-solid fa-kitchen-set"></i>
-            </div>
-            <div class="trust-text">
-              <h4>24/7 Kitchen Access</h4>
-              <p>Self-Cooking Anytime</p>
-            </div>
-          </div>
+        <!-- 3 Clean Minimal Highlights -->
+        <div class="hero-minimal-trust">
+          <span><i class="fa-solid fa-circle-check"></i> 24/7 Entry & Exit</span>
+          <span><i class="fa-solid fa-circle-check"></i> Self-Cooking Kitchen</span>
+          <span><i class="fa-solid fa-circle-check"></i> Gated Security</span>
         </div>
       </div>
 
-      <!-- Quick Inquiry Card Widget -->
-      <div class="hero-card-widget">
+      <!-- Ultra-Clean Glass Inquiry Card Widget -->
+      <div class="hero-card-widget minimal-glass-card">
         <h3><i class="fa-solid fa-bolt"></i> Instant Inquiry</h3>
-        <p>Check room availability or book a quick walk-through visit right now.</p>
+        <p class="minimal-card-sub">Check room rates & availability directly</p>
+        
         <form class="hero-quick-form" id="heroQuickForm">
           <div class="form-group">
             <label for="heroOption">Looking For</label>
@@ -245,11 +248,11 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="heroPhone">Your Mobile Number</label>
-            <input type="tel" id="heroPhone" class="form-input" placeholder="e.g. 9876543210" required>
+            <label for="heroPhone">Mobile Number</label>
+            <input type="tel" id="heroPhone" class="form-input" placeholder="Enter your mobile number" required>
           </div>
           <button type="submit" class="btn-primary btn-block">
-            <i class="fa-brands fa-whatsapp"></i> Check Availability on WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> Check Availability
           </button>
         </form>
       </div>
@@ -601,7 +604,7 @@
         <span class="section-tag">Visual Showcase</span>
         <h2 class="section-title">Explore Aeronest Living Spaces</h2>
         <p class="section-subtitle">
-          Take a virtual tour of our premium PG rooms, independent luxury flats, self-cooking kitchen, gym, and outdoor surroundings.
+          Take a virtual tour of our premium PG rooms, independent luxury flats, self-cooking kitchen, and facilities.
         </p>
       </div>
 
@@ -619,76 +622,13 @@
         <button class="gallery-filter-btn" data-gallery-filter="amenities">
           <i class="fa-solid fa-dumbbell"></i> Facilities & Kitchen
         </button>
-        <button class="gallery-filter-btn" data-gallery-filter="outdoors">
-          <i class="fa-solid fa-tree"></i> Outdoors & Views
-        </button>
       </div>
 
       <!-- Gallery Grid -->
       <div class="gallery-grid" id="galleryGrid">
-        
-        <!-- Inside Image 1 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="outdoors" data-sub="Landscaped Lawn & Playground Setup" data-index="0">
-          <img src="images/inside/1.jpg" alt="Green Lawn and Play Area at Aeronest PG" loading="lazy" class="lazy-img">
-          <div class="gallery-badge-top">Outdoors</div>
-          <div class="gallery-overlay">
-            <div class="gallery-info">
-              <span class="gallery-title-badge">Green Lawn & Play Area</span>
-              <span class="gallery-sub-badge">Landscaped Lawn & Playground Setup</span>
-            </div>
-            <div class="gallery-actions">
-              <button class="heart-like-btn" aria-label="Like this photo">
-                <i class="fa-solid fa-heart"></i> <span class="like-count">34</span>
-              </button>
-              <button class="gallery-zoom-btn" aria-label="Expand photo">
-                <i class="fa-solid fa-expand"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inside Image 2 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="outdoors" data-sub="Prime Airport & Commercial Zone Proximity" data-index="1">
-          <img src="images/inside/2.jpg" alt="Prime Airport & Tech Park Location View" loading="lazy" class="lazy-img">
-          <div class="gallery-badge-top">Nearby View</div>
-          <div class="gallery-overlay">
-            <div class="gallery-info">
-              <span class="gallery-title-badge">Prime Airport & Location View</span>
-              <span class="gallery-sub-badge">Prime Airport & Commercial Zone Proximity</span>
-            </div>
-            <div class="gallery-actions">
-              <button class="heart-like-btn" aria-label="Like this photo">
-                <i class="fa-solid fa-heart"></i> <span class="like-count">42</span>
-              </button>
-              <button class="gallery-zoom-btn" aria-label="Expand photo">
-                <i class="fa-solid fa-expand"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inside Image 3 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="outdoors" data-sub="Park Benches & Morning Walk Area" data-index="2">
-          <img src="images/inside/3.jpg" alt="Garden Seating and Park Benches at Aeronest" loading="lazy" class="lazy-img">
-          <div class="gallery-badge-top">Outdoors</div>
-          <div class="gallery-overlay">
-            <div class="gallery-info">
-              <span class="gallery-title-badge">Garden Park Benches</span>
-              <span class="gallery-sub-badge">Park Benches & Morning Walk Area</span>
-            </div>
-            <div class="gallery-actions">
-              <button class="heart-like-btn" aria-label="Like this photo">
-                <i class="fa-solid fa-heart"></i> <span class="like-count">31</span>
-              </button>
-              <button class="gallery-zoom-btn" aria-label="Expand photo">
-                <i class="fa-solid fa-expand"></i>
-              </button>
-            </div>
-          </div>
-        </div>
 
         <!-- Inside Image 4 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Sofa Seating & Glass Coffee Table" data-index="3">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Sofa Seating & Glass Coffee Table" data-index="0">
           <img src="images/inside/4.jpg" alt="Spacious Flat Living Room Lounge at Aeronest" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Living Room</div>
           <div class="gallery-overlay">
@@ -708,7 +648,7 @@
         </div>
 
         <!-- Inside Image 5 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Wide Tiled Living Space & Sofa Set" data-index="4">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Wide Tiled Living Space & Sofa Set" data-index="1">
           <img src="images/inside/5.jpg" alt="Common Living Hall and Reception Room" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Living Room</div>
           <div class="gallery-overlay">
@@ -728,7 +668,7 @@
         </div>
 
         <!-- Inside Image 6 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Sliding Windows & Natural Ventilation" data-index="5">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="flats" data-sub="Sliding Windows & Natural Ventilation" data-index="2">
           <img src="images/inside/6.jpg" alt="Bright Living Hall with Windows and Curtains" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Living Room</div>
           <div class="gallery-overlay">
@@ -748,7 +688,7 @@
         </div>
 
         <!-- Inside Image 7 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Western Closet, Ceramic Basin & Wall Tiles" data-index="6">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Western Closet, Ceramic Basin & Wall Tiles" data-index="3">
           <img src="images/inside/7.jpg" alt="Clean Attached Western Bathroom at Aeronest" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Washroom</div>
           <div class="gallery-overlay">
@@ -768,7 +708,7 @@
         </div>
 
         <!-- Inside Image 8 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Ventilated Window & Clean Tiled Setup" data-index="7">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Ventilated Window & Clean Tiled Setup" data-index="4">
           <img src="images/inside/8.jpg" alt="Modern Clean Restroom with Window" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Washroom</div>
           <div class="gallery-overlay">
@@ -787,28 +727,8 @@
           </div>
         </div>
 
-        <!-- Inside Image 9 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="outdoors" data-sub="Safety Railing & Scenic Airport Corridor View" data-index="8">
-          <img src="images/inside/9.jpg" alt="Private Balcony View at Aeronest PG" loading="lazy" class="lazy-img">
-          <div class="gallery-badge-top">Balcony View</div>
-          <div class="gallery-overlay">
-            <div class="gallery-info">
-              <span class="gallery-title-badge">Private Balcony View</span>
-              <span class="gallery-sub-badge">Safety Railing & Scenic Airport Corridor View</span>
-            </div>
-            <div class="gallery-actions">
-              <button class="heart-like-btn" aria-label="Like this photo">
-                <i class="fa-solid fa-heart"></i> <span class="like-count">60</span>
-              </button>
-              <button class="gallery-zoom-btn" aria-label="Expand photo">
-                <i class="fa-solid fa-expand"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
         <!-- Inside Image 10 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Double Bed, Dressing Table Mirror & Curtains" data-index="9">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Double Bed, Dressing Table Mirror & Curtains" data-index="5">
           <img src="images/inside/10.jpg" alt="Master PG Bedroom with Dressing Mirror" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">PG Room</div>
           <div class="gallery-overlay">
@@ -828,7 +748,7 @@
         </div>
 
         <!-- Inside Image 11 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Full Wardrobe, Mirror & Sunlit Window" data-index="10">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Full Wardrobe, Mirror & Sunlit Window" data-index="6">
           <img src="images/inside/11.jpg" alt="Furnished PG Room with Wooden Wardrobe" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">PG Room</div>
           <div class="gallery-overlay">
@@ -848,7 +768,7 @@
         </div>
 
         <!-- Inside Image 12 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Cozy Bedding & Clean Room Interior" data-index="11">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="rooms" data-sub="Cozy Bedding & Clean Room Interior" data-index="7">
           <img src="images/inside/12.jpg" alt="Cozy PG Bedroom Bed Setup" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">PG Room</div>
           <div class="gallery-overlay">
@@ -868,7 +788,7 @@
         </div>
 
         <!-- Inside Image 13 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="amenities" data-sub="Gas Stove, Gas Cylinder & Countertop" data-index="12">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="amenities" data-sub="Gas Stove, Gas Cylinder & Countertop" data-index="8">
           <img src="images/inside/13.jpg" alt="Self-Cooking Kitchen Counter and Stove" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Kitchen</div>
           <div class="gallery-overlay">
@@ -888,7 +808,7 @@
         </div>
 
         <!-- Inside Image 14 -->
-        <div class="gallery-card skeleton-loading" data-gallery-cat="amenities" data-sub="Marble Flooring, Counter & Wash Basin" data-index="13">
+        <div class="gallery-card skeleton-loading" data-gallery-cat="amenities" data-sub="Marble Flooring, Counter & Wash Basin" data-index="9">
           <img src="images/inside/14.jpg" alt="Open Kitchen Hall and Dining Space" loading="lazy" class="lazy-img">
           <div class="gallery-badge-top">Kitchen & Hall</div>
           <div class="gallery-overlay">
@@ -1221,6 +1141,50 @@
       </div>
     </div>
   </div>
+
+  <!-- Interactive Girls PG Disclaimer Modal (Short, Loud & Clear - Auto triggers 7s After Load) -->
+  <div class="disclaimer-modal" id="disclaimerModal" aria-hidden="true" role="dialog" aria-labelledby="disclaimerTitle">
+    <div class="disclaimer-backdrop" id="disclaimerBackdrop"></div>
+    <div class="disclaimer-card compact-loud">
+      <button class="disclaimer-close-btn" id="disclaimerCloseBtn" aria-label="Close Disclaimer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="disclaimer-loud-header">
+        <div class="loud-badge">
+          <i class="fa-solid fa-person-dress"></i> <span>GIRLS & WOMEN ONLY</span>
+        </div>
+        <h3 id="disclaimerTitle">🌸 Strictly Exclusively Girls PG</h3>
+      </div>
+
+      <div class="disclaimer-loud-body">
+        <p class="loud-notice-text">
+          Aeronest PG is <strong>100% reserved for Girls, Working Women & Aviation Staff</strong> opposite Guwahati Airport.
+        </p>
+
+        <div class="loud-warning-banner">
+          <i class="fa-solid fa-ban"></i>
+          <span><strong>MALE PG ADMISSIONS STRICTLY NOT ALLOWED</strong></span>
+        </div>
+      </div>
+
+      <div class="disclaimer-actions">
+        <button class="btn-primary btn-disclaimer-agree" id="disclaimerAgreeBtn">
+          <i class="fa-solid fa-check-double"></i> I Understand & Agree
+        </button>
+        <a href="https://wa.me/916001351178?text=Hello%20Aeronest!%20I%20am%20a%20female%20applicant%20inquiring%20about%20PG/Flat%20rentals." target="_blank" rel="noopener" class="btn-whatsapp btn-disclaimer-wa">
+          <i class="fa-brands fa-whatsapp"></i> Inquire Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Disclaimer Pill (Re-open Disclaimer Anytime) -->
+  <button class="floating-disclaimer-pill" id="floatingDisclaimerPill" title="Click to view Girls PG Disclaimer">
+    <span class="pill-dot-pulse"></span>
+    <i class="fa-solid fa-person-dress"></i>
+    <span>Girls Only PG</span>
+  </button>
 
   <script src="script.js"></script>
 </body>

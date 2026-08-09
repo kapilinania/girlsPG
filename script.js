@@ -441,4 +441,225 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(whatsappUrl, '_blank');
     });
   }
+
+  // Hero Background Animated Slider (1.png, 2.png, 3.png) with Live Progress Bar
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.hero-dot');
+  const heroPrevBtn = document.getElementById('heroSliderPrev');
+  const heroNextBtn = document.getElementById('heroSliderNext');
+  const heroProgressFill = document.getElementById('heroProgressFill');
+
+  if (heroSlides.length > 0) {
+    let currentHeroIndex = 0;
+    let heroSliderTimer = null;
+
+    function resetProgressBar() {
+      if (!heroProgressFill) return;
+      heroProgressFill.style.transition = 'none';
+      heroProgressFill.style.width = '0%';
+      // Force Reflow
+      void heroProgressFill.offsetWidth;
+      heroProgressFill.style.transition = 'width 5s linear';
+      heroProgressFill.style.width = '100%';
+    }
+
+    function showHeroSlide(index) {
+      if (index < 0) {
+        currentHeroIndex = heroSlides.length - 1;
+      } else if (index >= heroSlides.length) {
+        currentHeroIndex = 0;
+      } else {
+        currentHeroIndex = index;
+      }
+
+      heroSlides.forEach((slide, i) => {
+        if (i === currentHeroIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      heroDots.forEach((dot, i) => {
+        if (i === currentHeroIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+
+      resetProgressBar();
+    }
+
+    function nextHeroSlide() {
+      showHeroSlide(currentHeroIndex + 1);
+    }
+
+    function prevHeroSlide() {
+      showHeroSlide(currentHeroIndex - 1);
+    }
+
+    function startHeroTimer() {
+      stopHeroTimer();
+      resetProgressBar();
+      heroSliderTimer = setInterval(nextHeroSlide, 5000);
+    }
+
+    function stopHeroTimer() {
+      if (heroSliderTimer) {
+        clearInterval(heroSliderTimer);
+        heroSliderTimer = null;
+      }
+    }
+
+    // Navigation Controls
+    if (heroNextBtn) {
+      heroNextBtn.addEventListener('click', () => {
+        nextHeroSlide();
+        startHeroTimer();
+      });
+    }
+
+    if (heroPrevBtn) {
+      heroPrevBtn.addEventListener('click', () => {
+        prevHeroSlide();
+        startHeroTimer();
+      });
+    }
+
+    // Dot Indicators Click
+    heroDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showHeroSlide(i);
+        startHeroTimer();
+      });
+    });
+
+    // Touch Swipe Support for Mobile Viewports
+    let heroTouchStartX = 0;
+    let heroTouchEndX = 0;
+    const heroSection = document.querySelector('.hero');
+
+    if (heroSection) {
+      heroSection.addEventListener('touchstart', (e) => {
+        heroTouchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      heroSection.addEventListener('touchend', (e) => {
+        heroTouchEndX = e.changedTouches[0].screenX;
+        const diff = heroTouchEndX - heroTouchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) {
+            nextHeroSlide();
+          } else {
+            prevHeroSlide();
+          }
+          startHeroTimer();
+        }
+      }, { passive: true });
+    }
+
+    // Initialize Auto Slider
+    startHeroTimer();
+  }
+
+  // Interactive Hero Category Selector Pills
+  const heroCatPills = document.querySelectorAll('.hero-cat-pill');
+  const heroOptionSelect = document.getElementById('heroOption');
+
+  heroCatPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      heroCatPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const targetVal = pill.getAttribute('data-option');
+      if (targetVal && heroOptionSelect) {
+        heroOptionSelect.value = targetVal;
+        
+        // Highlight form dropdown visually
+        heroOptionSelect.classList.add('highlight-select');
+        setTimeout(() => {
+          heroOptionSelect.classList.remove('highlight-select');
+        }, 1000);
+      }
+    });
+  });
+
+  // Interactive Girls PG Disclaimer Modal Controller (Auto 7-Second Timer)
+  const disclaimerModal = document.getElementById('disclaimerModal');
+  const disclaimerCloseBtn = document.getElementById('disclaimerCloseBtn');
+  const disclaimerAgreeBtn = document.getElementById('disclaimerAgreeBtn');
+  const disclaimerBackdrop = document.getElementById('disclaimerBackdrop');
+  const triggerDisclaimerBtn = document.getElementById('triggerDisclaimerBtn');
+  const floatingDisclaimerPill = document.getElementById('floatingDisclaimerPill');
+
+  function openDisclaimerModal() {
+    if (disclaimerModal) {
+      disclaimerModal.classList.add('active');
+      disclaimerModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeDisclaimerModal() {
+    if (disclaimerModal) {
+      disclaimerModal.classList.remove('active');
+      disclaimerModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      try {
+        sessionStorage.setItem('aeronest_disclaimer_viewed', 'true');
+      } catch (err) {
+        // Fallback if sessionStorage blocked
+      }
+    }
+  }
+
+  // Trigger disclaimer popup automatically 7 seconds after site load
+  setTimeout(() => {
+    let alreadyViewed = false;
+    try {
+      alreadyViewed = sessionStorage.getItem('aeronest_disclaimer_viewed') === 'true';
+    } catch (e) {
+      alreadyViewed = false;
+    }
+    
+    if (!alreadyViewed) {
+      openDisclaimerModal();
+    }
+  }, 7000);
+
+  // Manual Trigger via Hero Tag
+  if (triggerDisclaimerBtn) {
+    triggerDisclaimerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDisclaimerModal();
+    });
+  }
+
+  // Manual Trigger via Floating Pill
+  if (floatingDisclaimerPill) {
+    floatingDisclaimerPill.addEventListener('click', () => {
+      openDisclaimerModal();
+    });
+  }
+
+  // Close Event Handlers
+  if (disclaimerCloseBtn) {
+    disclaimerCloseBtn.addEventListener('click', closeDisclaimerModal);
+  }
+
+  if (disclaimerAgreeBtn) {
+    disclaimerAgreeBtn.addEventListener('click', closeDisclaimerModal);
+  }
+
+  if (disclaimerBackdrop) {
+    disclaimerBackdrop.addEventListener('click', closeDisclaimerModal);
+  }
+
+  // Keyboard Escape Key Handler
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && disclaimerModal && disclaimerModal.classList.contains('active')) {
+      closeDisclaimerModal();
+    }
+  });
 });
