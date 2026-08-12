@@ -563,6 +563,115 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroTimer();
   }
 
+  // Interactive Hero Dynamic Punchlines Switcher
+  const punchlineSlides = document.querySelectorAll('.punchline-slide');
+  const punchlinePills = document.querySelectorAll('.punchline-pill');
+  const punchlinePrevBtn = document.getElementById('prevPunchlineBtn');
+  const punchlineNextBtn = document.getElementById('nextPunchlineBtn');
+  const punchlineCounter = document.getElementById('punchlineCounter');
+  const punchlineProgressFill = document.getElementById('punchlineProgressFill');
+  const punchlineWrapper = document.getElementById('heroPunchlineWrapper');
+
+  if (punchlineSlides.length > 0) {
+    let currentPunchlineIndex = 0;
+    let punchlineTimer = null;
+
+    function resetPunchlineProgress() {
+      if (!punchlineProgressFill) return;
+      punchlineProgressFill.style.transition = 'none';
+      punchlineProgressFill.style.width = '0%';
+      void punchlineProgressFill.offsetWidth;
+      punchlineProgressFill.style.transition = 'width 4s linear';
+      punchlineProgressFill.style.width = '100%';
+    }
+
+    function showPunchline(index) {
+      if (index < 0) {
+        currentPunchlineIndex = punchlineSlides.length - 1;
+      } else if (index >= punchlineSlides.length) {
+        currentPunchlineIndex = 0;
+      } else {
+        currentPunchlineIndex = index;
+      }
+
+      punchlineSlides.forEach((slide, i) => {
+        if (i === currentPunchlineIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      punchlinePills.forEach((pill, i) => {
+        if (i === currentPunchlineIndex) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+
+      if (punchlineCounter) {
+        punchlineCounter.textContent = `${currentPunchlineIndex + 1} / ${punchlineSlides.length}`;
+      }
+
+      resetPunchlineProgress();
+    }
+
+    function nextPunchline() {
+      showPunchline(currentPunchlineIndex + 1);
+    }
+
+    function prevPunchline() {
+      showPunchline(currentPunchlineIndex - 1);
+    }
+
+    function startPunchlineTimer() {
+      stopPunchlineTimer();
+      resetPunchlineProgress();
+      punchlineTimer = setInterval(nextPunchline, 4000);
+    }
+
+    function stopPunchlineTimer() {
+      if (punchlineTimer) {
+        clearInterval(punchlineTimer);
+        punchlineTimer = null;
+      }
+    }
+
+    // Pill Tab Click Handlers
+    punchlinePills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const idx = parseInt(pill.getAttribute('data-punchline'), 10);
+        showPunchline(idx);
+        startPunchlineTimer();
+      });
+    });
+
+    // Arrow Button Click Handlers
+    if (punchlineNextBtn) {
+      punchlineNextBtn.addEventListener('click', () => {
+        nextPunchline();
+        startPunchlineTimer();
+      });
+    }
+
+    if (punchlinePrevBtn) {
+      punchlinePrevBtn.addEventListener('click', () => {
+        prevPunchline();
+        startPunchlineTimer();
+      });
+    }
+
+    // Pause Auto-Rotation on Hover
+    if (punchlineWrapper) {
+      punchlineWrapper.addEventListener('mouseenter', stopPunchlineTimer);
+      punchlineWrapper.addEventListener('mouseleave', startPunchlineTimer);
+    }
+
+    // Initialize Auto-Rotation
+    startPunchlineTimer();
+  }
+
   // Hero Card Widget Top Image Slider Logic
   const cardSlides = document.querySelectorAll('.card-slide');
   const cardDots = document.querySelectorAll('.card-dot');

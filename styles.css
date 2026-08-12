@@ -584,10 +584,10 @@ img {
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 16px;
+  line-height: 1.18;
+  margin-bottom: 8px;
   color: #ffffff;
 }
 
@@ -599,11 +599,152 @@ img {
 }
 
 .hero-subtitle {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: #cbd5e1;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   max-width: 600px;
-  line-height: 1.6;
+  line-height: 1.5;
+}
+
+/* Interactive Dynamic Punchlines Switcher (Compact & Shortened) */
+.hero-punchline-wrapper {
+  margin-top: 4px;
+  margin-bottom: 14px;
+}
+
+.punchline-pills-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.punchline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  padding: 4px 11px;
+  border-radius: 30px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.punchline-pill i {
+  font-size: 0.8rem;
+  color: #fb7185;
+  transition: color 0.25s ease;
+}
+
+.punchline-pill:hover {
+  background: rgba(244, 63, 94, 0.18);
+  border-color: rgba(244, 63, 94, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.punchline-pill.active {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.45), rgba(244, 63, 94, 0.35));
+  border-color: #f43f5e;
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(244, 63, 94, 0.35);
+}
+
+.punchline-pill.active i {
+  color: #fbbf24;
+}
+
+.punchline-slides-container {
+  position: relative;
+  min-height: 105px;
+}
+
+.punchline-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+}
+
+.punchline-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.punchline-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 6px;
+  padding-top: 4px;
+  max-width: 580px;
+}
+
+.punchline-progress-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.punchline-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f43f5e, #fbbf24);
+  border-radius: 4px;
+  transition: width 4s linear;
+}
+
+.punchline-arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.punchline-arrow-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.punchline-arrow-btn:hover {
+  background: #f43f5e;
+  border-color: #f43f5e;
+  transform: scale(1.08);
+}
+
+.punchline-counter {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+  min-width: 36px;
+  text-align: center;
 }
 
 .hero-cta-group {

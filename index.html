@@ -176,10 +176,13 @@
   <section class="hero">
     <!-- Interactive Background Image Slider -->
     <div class="hero-bg-slider" id="heroBgSlider">
-      <div class="hero-slide active" style="background-image: url('images/inside/10.jpg');"></div>
-      <div class="hero-slide" style="background-image: url('images/inside/13.jpg');"></div>
-      <div class="hero-slide" style="background-image: url('images/inside/4.jpg');"></div>
-      <div class="hero-slide" style="background-image: url('images/inside/14.jpg');"></div>
+      <div class="hero-slide active" style="background-image: url('images/slider/1.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/2.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/3.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/4.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/5.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/6.png');"></div>
+      <div class="hero-slide" style="background-image: url('images/slider/12.jpg');"></div>
     </div>
 
     <!-- Dark Gradient Overlay for Contrast & Readability -->
@@ -199,6 +202,9 @@
       <span class="hero-dot" data-slide="1" aria-label="Slide 2"></span>
       <span class="hero-dot" data-slide="2" aria-label="Slide 3"></span>
       <span class="hero-dot" data-slide="3" aria-label="Slide 4"></span>
+      <span class="hero-dot" data-slide="4" aria-label="Slide 5"></span>
+      <span class="hero-dot" data-slide="5" aria-label="Slide 6"></span>
+      <span class="hero-dot" data-slide="6" aria-label="Slide 7"></span>
     </div>
 
     <div class="hero-container">
@@ -209,14 +215,110 @@
           <span>Exclusively Girls PG & Female Flats • Opposite Airport</span>
         </div>
 
-        <h1 class="hero-title">
-          Luxury Living <span>Only For Girls & Women</span>
-        </h1>
-        
-        <p class="hero-subtitle">
-          Safe PG rooms & independent 2BHK/3BHK flats with 24/7 entry, self-cooking kitchen & top safety opposite Guwahati Airport.
-        </p>
-        
+        <!-- Interactive Dynamic Punchlines Switcher -->
+        <div class="hero-punchline-wrapper" id="heroPunchlineWrapper">
+          <!-- Punchline Navigation Pills / Badges -->
+          <div class="punchline-pills-nav" id="punchlinePillsNav">
+            <button type="button" class="punchline-pill active" data-punchline="0">
+              <i class="fa-solid fa-crown"></i> Luxury Living
+            </button>
+            <button type="button" class="punchline-pill" data-punchline="1">
+              <i class="fa-solid fa-plane-arrival"></i> Next to Airport
+            </button>
+            <button type="button" class="punchline-pill" data-punchline="2">
+              <i class="fa-solid fa-shield-halved"></i> 24/7 Safety
+            </button>
+            <button type="button" class="punchline-pill" data-punchline="3">
+              <i class="fa-solid fa-fire-burner"></i> Kitchen Access
+            </button>
+            <button type="button" class="punchline-pill" data-punchline="4">
+              <i class="fa-solid fa-building"></i> Rooms & Flats
+            </button>
+            <button type="button" class="punchline-pill" data-punchline="5">
+              <i class="fa-solid fa-user-tie"></i> For Working Women
+            </button>
+          </div>
+
+          <!-- Dynamic Animated Punchline Slides -->
+          <div class="punchline-slides-container">
+            <!-- Punchline 1 -->
+            <div class="punchline-slide active" data-punchline-index="0">
+              <h1 class="hero-title">
+                Luxury Living <span>Only For Girls & Women</span>
+              </h1>
+              <p class="hero-subtitle">
+                Safe PG rooms & independent 2BHK/3BHK flats with 24/7 entry, self-cooking kitchen & top safety opposite Guwahati Airport.
+              </p>
+            </div>
+
+            <!-- Punchline 2 -->
+            <div class="punchline-slide" data-punchline-index="1">
+              <h1 class="hero-title">
+                Home Next to <span>Guwahati Airport</span>
+              </h1>
+              <p class="hero-subtitle">
+                Prime SOS Road location directly opposite LGBI Airport—ideal for airline crew, flight attendants, pilots & professionals.
+              </p>
+            </div>
+
+            <!-- Punchline 3 -->
+            <div class="punchline-slide" data-punchline-index="2">
+              <h1 class="hero-title">
+                24/7 Open Entry <span>& Complete Safety</span>
+              </h1>
+              <p class="hero-subtitle">
+                Zero curfew restrictions with round-the-clock CCTV security, gated access & 100% female-only environment.
+              </p>
+            </div>
+
+            <!-- Punchline 4 -->
+            <div class="punchline-slide" data-punchline-index="3">
+              <h1 class="hero-title">
+                Self-Cooking Kitchen <span>& Homely Freedom</span>
+              </h1>
+              <p class="hero-subtitle">
+                Fully equipped 24-hour kitchen facilities allowing you to cook your favorite healthy meals whenever you wish.
+              </p>
+            </div>
+
+            <!-- Punchline 5 -->
+            <div class="punchline-slide" data-punchline-index="4">
+              <h1 class="hero-title">
+                Furnished PG Rooms <span>& 2BHK/3BHK Luxury Flats</span>
+              </h1>
+              <p class="hero-subtitle">
+                Flexible living options—choose individual single/shared PG beds or rent full 2BHK/3BHK independent apartments.
+              </p>
+            </div>
+
+            <!-- Punchline 6 -->
+            <div class="punchline-slide" data-punchline-index="5">
+              <h1 class="hero-title">
+                Designed Exclusively for <span>Working Women & Flight Staff</span>
+              </h1>
+              <p class="hero-subtitle">
+                Peaceful, high-comfort residential atmosphere tailored for aviation staff, shift professionals & corporate executives.
+              </p>
+            </div>
+          </div>
+
+          <!-- Punchline Progress & Quick Controls Bar -->
+          <div class="punchline-controls">
+            <div class="punchline-progress-bar">
+              <div class="punchline-progress-fill" id="punchlineProgressFill"></div>
+            </div>
+            <div class="punchline-arrows">
+              <button type="button" class="punchline-arrow-btn" id="prevPunchlineBtn" aria-label="Previous Punchline">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <span class="punchline-counter" id="punchlineCounter">1 / 6</span>
+              <button type="button" class="punchline-arrow-btn" id="nextPunchlineBtn" aria-label="Next Punchline">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="hero-cta-group">
           <a href="#" class="btn-primary open-modal-btn" data-room-target="Private PG Room">
             <i class="fa-solid fa-calendar-check"></i> Book a Visit
@@ -238,7 +340,28 @@
       <div class="hero-card-widget screenshot-style-card">
         <!-- Top Image Slider Frame -->
         <div class="card-slider-frame" id="cardSliderFrame">
-          <div class="card-slide active" style="background-image: url('images/inside/13.jpg');">
+          <div class="card-slide active" style="background-image: url('images/slider/1.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-building"></i> Aeronest Main Entrance</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/2.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-gem"></i> Premium Living Space</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/3.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-house-heart"></i> Modern Living Suite</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/4.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-hotel"></i> Luxury Furnished Stay</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/5.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-shield-halved"></i> Safe & Secure Campus</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/6.png');">
+            <span class="card-slide-badge"><i class="fa-solid fa-plane-arrival"></i> Opposite Guwahati Airport</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/slider/12.jpg');">
+            <span class="card-slide-badge"><i class="fa-solid fa-tree"></i> Gated Campus & Garden</span>
+          </div>
+          <div class="card-slide" style="background-image: url('images/inside/13.jpg');">
             <span class="card-slide-badge"><i class="fa-solid fa-fire-burner"></i> 24/7 Self-Cooking Kitchen</span>
           </div>
           <div class="card-slide" style="background-image: url('images/inside/10.jpg');">
@@ -273,6 +396,13 @@
             <span class="card-dot" data-card-slide="3"></span>
             <span class="card-dot" data-card-slide="4"></span>
             <span class="card-dot" data-card-slide="5"></span>
+            <span class="card-dot" data-card-slide="6"></span>
+            <span class="card-dot" data-card-slide="7"></span>
+            <span class="card-dot" data-card-slide="8"></span>
+            <span class="card-dot" data-card-slide="9"></span>
+            <span class="card-dot" data-card-slide="10"></span>
+            <span class="card-dot" data-card-slide="11"></span>
+            <span class="card-dot" data-card-slide="12"></span>
           </div>
         </div>
 
