@@ -1,54 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aeronestgirlspg.com/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    
-    <!-- Image Sitemap Entries for Fast Google Image Indexing -->
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/logo.png</image:loc>
-      <image:title>Aeronest Girls PG &amp; Apartments Logo</image:title>
-      <image:caption>Official logo of Aeronest Girls PG and Luxury Apartments opposite Guwahati Airport</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/hero.jpg</image:loc>
-      <image:title>Aeronest Luxury Accommodation Exterior View</image:title>
-      <image:caption>Premier fully-furnished girls PG and 2BHK/3BHK flats opposite Guwahati LGBI International Airport</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/room_private.jpg</image:loc>
-      <image:title>Private Deluxe PG Room for Working Women</image:title>
-      <image:caption>Spacious single room with attached bath, AC, balcony, and modern furniture</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/shared_pg.jpg</image:loc>
-      <image:title>Shared Twin Sharing PG Room</image:title>
-      <image:caption>Comfortable double sharing room with individual study tables and wardrobes</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/luxury_flat.jpg</image:loc>
-      <image:title>2BHK and 3BHK Luxury Rental Flat</image:title>
-      <image:caption>Independent fully furnished apartments directly opposite Guwahati Airport</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/kitchen.jpg</image:loc>
-      <image:title>24/7 Self-Cooking Modular Kitchen</image:title>
-      <image:caption>Hygienic kitchen with gas stove, microwave, refrigerator, and purified water</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://aeronestgirlspg.com/images/gym.jpg</image:loc>
-      <image:title>In-House Fitness Gym Facility</image:title>
-      <image:caption>Fully equipped fitness center for resident health and wellness</image:caption>
-    </image:image>
+  </url>
+  <url>
+    <loc>https://aeronestgirlspg.com/index.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

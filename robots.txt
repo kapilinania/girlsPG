@@ -1,15 +1,4 @@
-# robots.txt for Aeronest Girls PG & Apartments
-# Domain: https://aeronestgirlspg.com
-
 User-agent: *
 Allow: /
-Allow: /images/
-Allow: /styles.css
-Allow: /script.js
-Allow: /favicon.png
 
-# Crawl-delay for polite indexing
-Crawl-delay: 1
-
-# Sitemap Location
 Sitemap: https://aeronestgirlspg.com/sitemap.xml
