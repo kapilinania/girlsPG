@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Direct Sitemap reference for all web and image crawlers
 Sitemap: https://aeronestgirlspg.com/sitemap.xml

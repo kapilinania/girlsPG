@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://aeronestgirlspg.com/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://aeronestgirlspg.com/index.html</loc>
-    <lastmod>2026-08-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/hero.jpg</image:loc>
+      <image:title>Aeronest Girls PG &amp; Apartments Opposite Guwahati Airport</image:title>
+      <image:caption>Premier luxury female accommodation and PG rooms opposite LGBI Airport Azara Guwahati</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/room_private.jpg</image:loc>
+      <image:title>Private Single Room Girls PG Guwahati Airport</image:title>
+      <image:caption>Fully furnished private AC single room for working women and airline staff</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/shared_pg.jpg</image:loc>
+      <image:title>Shared Girls PG Room Azara Guwahati</image:title>
+      <image:caption>Spacious twin sharing room with attached bathroom and study desk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/luxury_flat.jpg</image:loc>
+      <image:title>2BHK 3BHK Luxury Flats Rent Guwahati Airport</image:title>
+      <image:caption>Independent furnished apartments on SOS Road Azara opposite LGBI Airport</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/kitchen.jpg</image:loc>
+      <image:title>24-7 Self-Cooking Kitchen Aeronest PG</image:title>
+      <image:caption>Modern modular kitchen with gas, microwave, refrigerator and RO water</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aeronestgirlspg.com/images/gym.jpg</image:loc>
+      <image:title>In-House Fitness Gym Aeronest Girls PG</image:title>
+      <image:caption>Resident fitness gym and wellness area at Aeronest Guwahati</image:caption>
+    </image:image>
   </url>
 </urlset>
