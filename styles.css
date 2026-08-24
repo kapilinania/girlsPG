@@ -165,8 +165,9 @@ img {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-icon {
@@ -181,6 +182,7 @@ img {
   font-size: 1.35rem;
   box-shadow: var(--glow-rose);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .brand-icon img {
@@ -193,23 +195,29 @@ img {
 .brand-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 900;
   color: #ffffff;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
+  letter-spacing: 0.2px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brand-tagline {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--accent-rose-soft);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2px;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -2849,7 +2857,47 @@ img {
 }
 
 /* Responsive Media Queries */
+@media (max-width: 1180px) {
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-link {
+    font-size: 0.88rem;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .nav-actions .btn-primary,
+  .nav-actions .btn-whatsapp {
+    padding: 8px 14px;
+    font-size: 0.84rem;
+  }
+}
+
 @media (max-width: 992px) {
+  .nav-links, .nav-actions {
+    display: none;
+  }
+  
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.65rem;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2892,14 +2940,23 @@ img {
 }
 
 @media (max-width: 768px) {
-  .nav-links, .nav-actions {
-    display: none;
+  .nav-container {
+    padding: 10px 16px;
   }
-  
-  .mobile-nav-toggle {
-    display: block;
+
+  .brand-icon {
+    width: 40px;
+    height: 40px;
   }
-  
+
+  .brand-name {
+    font-size: 1.15rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.62rem;
+  }
+
   .top-status-container {
     justify-content: center;
     text-align: center;
@@ -3327,6 +3384,71 @@ img {
   .hero-slider-dots {
     bottom: 12px;
     padding: 5px 12px;
+  }
+
+  .nav-container {
+    padding: 8px 12px;
+  }
+
+  .brand-logo {
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+    letter-spacing: -0.1px;
+  }
+
+  .brand-tagline {
+    font-size: 0.58rem;
+    letter-spacing: 0.6px;
+  }
+
+  .mobile-nav-toggle {
+    font-size: 1.35rem;
+  }
+
+  .status-badge span {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-container {
+    padding: 6px 10px;
+  }
+
+  .brand-logo {
+    gap: 6px;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.52rem;
+    letter-spacing: 0.3px;
   }
 }
 
