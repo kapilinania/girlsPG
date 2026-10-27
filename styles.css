@@ -2016,12 +2016,12 @@ section[id] {
   box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3);
 }
 
-/* 3-Video Square Interactive Grid (ZERO BLACK BARS) */
+/* Video Reels Square Interactive Grid (ZERO BLACK BARS) */
 .insta-video-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  max-width: 1160px;
+  max-width: 840px;
   margin: 0 auto 30px auto;
   padding: 0 16px;
 }
