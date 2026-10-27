@@ -900,60 +900,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioBtn = card.querySelector('.insta-audio-toggle');
     const watchBtn = card.querySelector('.insta-card-watch-btn');
 
-    if (!video) return;
+    if (video) {
+      // Ensure initial muted autoplay
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
 
-    // Ensure initial muted autoplay
-    video.muted = true;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {});
-    }
-
-    // Audio Toggle
-    if (audioBtn) {
-      audioBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const willUnmute = video.muted;
-        
-        // If unmuting, mute all other videos first
-        if (willUnmute) {
-          document.querySelectorAll('.insta-square-video').forEach(v => {
-            if (v !== video) {
-              v.muted = true;
-              const parentCard = v.closest('.insta-square-card');
-              const parentBtn = parentCard ? parentCard.querySelector('.insta-audio-toggle') : null;
-              if (parentBtn) {
-                parentBtn.classList.remove('is-unmuted');
-                parentBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-                parentBtn.setAttribute('title', 'Tap to unmute sound');
+      // Audio Toggle
+      if (audioBtn) {
+        audioBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const willUnmute = video.muted;
+          
+          // If unmuting, mute all other videos first
+          if (willUnmute) {
+            document.querySelectorAll('.insta-square-video').forEach(v => {
+              if (v !== video) {
+                v.muted = true;
+                const parentCard = v.closest('.insta-square-card');
+                const parentBtn = parentCard ? parentCard.querySelector('.insta-audio-toggle') : null;
+                if (parentBtn) {
+                  parentBtn.classList.remove('is-unmuted');
+                  parentBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                  parentBtn.setAttribute('title', 'Tap to unmute sound');
+                }
               }
-            }
-          });
-        }
+            });
+          }
 
-        video.muted = !willUnmute;
-        if (!video.muted) {
-          audioBtn.classList.add('is-unmuted');
-          audioBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-          audioBtn.setAttribute('title', 'Tap to mute sound');
-        } else {
-          audioBtn.classList.remove('is-unmuted');
-          audioBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-          audioBtn.setAttribute('title', 'Tap to unmute sound');
-        }
-      });
-    }
+          video.muted = !willUnmute;
+          if (!video.muted) {
+            audioBtn.classList.add('is-unmuted');
+            audioBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+            audioBtn.setAttribute('title', 'Tap to mute sound');
+          } else {
+            audioBtn.classList.remove('is-unmuted');
+            audioBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            audioBtn.setAttribute('title', 'Tap to unmute sound');
+          }
+        });
+      }
 
-    // Play / Pause toggle on media tap
-    if (media) {
-      media.addEventListener('click', (e) => {
-        if (e.target.closest('.insta-audio-toggle')) return;
-        if (video.paused) {
-          video.play().catch(() => {});
-          media.classList.remove('is-paused');
-        } else {
-          video.pause();
-          media.classList.add('is-paused');
+      // Play / Pause toggle on media tap
+      if (media) {
+        media.addEventListener('click', (e) => {
+          if (e.target.closest('.insta-audio-toggle')) return;
+          if (video.paused) {
+            video.play().catch(() => {});
+            media.classList.remove('is-paused');
+          } else {
+            video.pause();
+            media.classList.add('is-paused');
+          }
+        });
+      }
+    } else if (media) {
+      // Direct Instagram post launch on media tap
+      media.addEventListener('click', () => {
+        const directLink = card.getAttribute('data-direct-link');
+        if (directLink) {
+          window.open(directLink, '_blank', 'noopener');
         }
       });
     }
@@ -974,24 +982,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = card.getAttribute('data-title');
     const cardVideo = card.querySelector('.insta-square-video');
 
-    if (modalVideo && videoSrc) {
-      modalVideo.src = videoSrc;
-      if (cardVideo && !isNaN(cardVideo.currentTime)) {
-        modalVideo.currentTime = cardVideo.currentTime;
+    if (videoSrc) {
+      if (modalVideo) {
+        modalVideo.src = videoSrc;
+        if (cardVideo && !isNaN(cardVideo.currentTime)) {
+          modalVideo.currentTime = cardVideo.currentTime;
+        }
+        modalVideo.muted = false;
+        modalVideo.play().catch(() => {});
       }
-      modalVideo.muted = false;
-      modalVideo.play().catch(() => {});
-    }
-    if (modalTitle && title) {
-      modalTitle.innerText = title;
-    }
-    if (modalDirectBtn && directLink) {
-      modalDirectBtn.setAttribute('href', directLink);
-    }
-    if (instaModal) {
-      instaModal.classList.add('active');
-      instaModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (modalTitle && title) {
+        modalTitle.innerText = title;
+      }
+      if (modalDirectBtn && directLink) {
+        modalDirectBtn.setAttribute('href', directLink);
+      }
+      if (instaModal) {
+        instaModal.classList.add('active');
+        instaModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    } else if (directLink) {
+      window.open(directLink, '_blank', 'noopener');
     }
   }
 
