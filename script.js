@@ -160,10 +160,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Filter Logic
   galleryFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-gallery-filter');
+
+      // Special action for Reel Video tab: Smooth jump & flash
+      if (filter === 'reel') {
+        const reelSpotlight = document.getElementById('reelSpotlight');
+        const reelCard = document.getElementById('reelCard');
+        if (reelSpotlight) {
+          reelSpotlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (reelCard) {
+          reelCard.classList.remove('highlight-flash');
+          void reelCard.offsetWidth;
+          reelCard.classList.add('highlight-flash');
+        }
+        const poster = document.getElementById('reelPosterOverlay');
+        if (poster) poster.classList.add('is-hidden');
+        return;
+      }
+
       galleryFilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.getAttribute('data-gallery-filter');
       currentActiveCards = [];
 
       galleryCards.forEach(card => {
@@ -853,4 +871,169 @@ document.addEventListener('DOMContentLoaded', () => {
       closeDisclaimerModal();
     }
   });
+
+  // Pure Video Reels Interactive Controller (Zero Clutter, 100% Mobile Responsive)
+  const instaCards = document.querySelectorAll('.insta-square-card');
+  const instaModal = document.getElementById('instaVideoModal');
+  const modalVideo = document.getElementById('instaModalVideo');
+  const modalTitle = document.getElementById('instaModalTitle');
+  const modalDirectBtn = document.getElementById('instaModalDirectBtn');
+  const instaModalCloseBtn = document.getElementById('instaModalClose');
+  const instaModalBackdropEl = document.getElementById('instaModalBackdrop');
+  const galleryReelTab = document.querySelector('.gallery-reel-tab');
+
+  // Smooth scroll from gallery "Watch Video Reel" tab
+  if (galleryReelTab) {
+    galleryReelTab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reelSec = document.getElementById('instaReelsSection') || document.getElementById('instaVideoGrid');
+      if (reelSec) {
+        reelSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // Handle Autoplay & Sound Toggle for each card
+  instaCards.forEach(card => {
+    const video = card.querySelector('.insta-square-video');
+    const media = card.querySelector('.insta-square-media');
+    const audioBtn = card.querySelector('.insta-audio-toggle');
+    const watchBtn = card.querySelector('.insta-card-watch-btn');
+
+    if (!video) return;
+
+    // Ensure initial muted autoplay
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+
+    // Audio Toggle
+    if (audioBtn) {
+      audioBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willUnmute = video.muted;
+        
+        // If unmuting, mute all other videos first
+        if (willUnmute) {
+          document.querySelectorAll('.insta-square-video').forEach(v => {
+            if (v !== video) {
+              v.muted = true;
+              const parentCard = v.closest('.insta-square-card');
+              const parentBtn = parentCard ? parentCard.querySelector('.insta-audio-toggle') : null;
+              if (parentBtn) {
+                parentBtn.classList.remove('is-unmuted');
+                parentBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                parentBtn.setAttribute('title', 'Tap to unmute sound');
+              }
+            }
+          });
+        }
+
+        video.muted = !willUnmute;
+        if (!video.muted) {
+          audioBtn.classList.add('is-unmuted');
+          audioBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+          audioBtn.setAttribute('title', 'Tap to mute sound');
+        } else {
+          audioBtn.classList.remove('is-unmuted');
+          audioBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+          audioBtn.setAttribute('title', 'Tap to unmute sound');
+        }
+      });
+    }
+
+    // Play / Pause toggle on media tap
+    if (media) {
+      media.addEventListener('click', (e) => {
+        if (e.target.closest('.insta-audio-toggle')) return;
+        if (video.paused) {
+          video.play().catch(() => {});
+          media.classList.remove('is-paused');
+        } else {
+          video.pause();
+          media.classList.add('is-paused');
+        }
+      });
+    }
+
+    // Watch Fullscreen button
+    if (watchBtn) {
+      watchBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPureVideoModal(card);
+      });
+    }
+  });
+
+  // Pure Video Modal Function (Full Controls, No Clutter)
+  function openPureVideoModal(card) {
+    const videoSrc = card.getAttribute('data-video-src');
+    const directLink = card.getAttribute('data-direct-link');
+    const title = card.getAttribute('data-title');
+    const cardVideo = card.querySelector('.insta-square-video');
+
+    if (modalVideo && videoSrc) {
+      modalVideo.src = videoSrc;
+      if (cardVideo && !isNaN(cardVideo.currentTime)) {
+        modalVideo.currentTime = cardVideo.currentTime;
+      }
+      modalVideo.muted = false;
+      modalVideo.play().catch(() => {});
+    }
+    if (modalTitle && title) {
+      modalTitle.innerText = title;
+    }
+    if (modalDirectBtn && directLink) {
+      modalDirectBtn.setAttribute('href', directLink);
+    }
+    if (instaModal) {
+      instaModal.classList.add('active');
+      instaModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closePureVideoModal() {
+    if (instaModal) {
+      instaModal.classList.remove('active');
+      instaModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.src = '';
+      }
+    }
+  }
+
+  if (instaModalCloseBtn) instaModalCloseBtn.addEventListener('click', closePureVideoModal);
+  if (instaModalBackdropEl) instaModalBackdropEl.addEventListener('click', closePureVideoModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && instaModal && instaModal.classList.contains('active')) {
+      closePureVideoModal();
+    }
+  });
+
+  // IntersectionObserver to pause out-of-screen videos for optimal performance
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const vid = entry.target;
+        const mediaBox = vid.closest('.insta-square-media');
+        if (entry.isIntersecting) {
+          if (vid.paused && mediaBox && !mediaBox.classList.contains('is-paused')) {
+            vid.play().catch(() => {});
+          }
+        } else {
+          if (!vid.paused) {
+            vid.pause();
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.insta-square-video').forEach(v => videoObserver.observe(v));
+  }
 });
