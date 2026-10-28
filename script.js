@@ -1,15 +1,279 @@
-// Aeronest Girls PG & Luxury Apartments - Master Script (v7 Slider & New Sections)
+// Aeronest Girls PG & Luxury Apartments - Master Script (Smooth Scroll & Interactive Animations)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize AOS (Animate On Scroll)
-  if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true,
-      offset: 80
+  // =========================================================================
+  // 1. Lenis Smooth Scroll Engine
+  // =========================================================================
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+    try {
+      window.lenis = new Lenis({
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        smoothTouch: false, // Keep snappy native touch responsiveness on mobile
+        touchMultiplier: 1.5,
+        infinite: false
+      });
+
+      function lenisRaf(time) {
+        if (window.lenis) {
+          window.lenis.raf(time);
+        }
+        requestAnimationFrame(lenisRaf);
+      }
+      requestAnimationFrame(lenisRaf);
+
+      if (typeof AOS !== 'undefined') {
+        window.lenis.on('scroll', () => {
+          AOS.refresh();
+        });
+      }
+    } catch (e) {
+      console.warn('Lenis initialization skipped:', e);
+    }
+  }
+
+  // Helper functions for modal background scroll lock
+  window.pauseScroll = function() {
+    if (window.lenis) window.lenis.stop();
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.resumeScroll = function() {
+    if (window.lenis) window.lenis.start();
+    document.body.style.overflow = '';
+  };
+
+  // =========================================================================
+  // 2. Smooth Anchor Navigation with Offset (Header Aware)
+  // =========================================================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#' || targetId.startsWith('#!')) return;
+      if (this.classList.contains('open-modal-btn')) return;
+
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+
+        // Close mobile navigation menu if open
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileToggle = document.getElementById('mobileNavToggle');
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          mobileMenu.classList.remove('active');
+          if (mobileToggle) {
+            const icon = mobileToggle.querySelector('i');
+            if (icon) icon.className = 'fa-solid fa-bars';
+          }
+        }
+
+        if (window.lenis) {
+          window.lenis.scrollTo(targetEl, {
+            offset: -75,
+            duration: 1.1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        } else {
+          const headerOffset = 75;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+          });
+        }
+      }
+    });
+  });
+
+  // =========================================================================
+  // 3. Top Reading Progress Bar & Circular Back-To-Top Button
+  // =========================================================================
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const progressRingCircle = document.getElementById('progressRingCircle');
+  const RING_CIRCUMFERENCE = 2 * Math.PI * 19; // ~119.38
+
+  if (progressRingCircle) {
+    progressRingCircle.style.strokeDasharray = `${RING_CIRCUMFERENCE} ${RING_CIRCUMFERENCE}`;
+    progressRingCircle.style.strokeDashoffset = `${RING_CIRCUMFERENCE}`;
+  }
+
+  const spySections = document.querySelectorAll('section[id], div[id="gallery"]');
+  const desktopNavLinks = document.querySelectorAll('.nav-links .nav-link');
+  const counterSpans = document.querySelectorAll('.counter-val');
+  let countersDone = false;
+
+  function updateActiveNavLink(currentScroll) {
+    const scrollPos = currentScroll + 120;
+    let activeId = '';
+
+    spySections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        activeId = sec.getAttribute('id');
+      }
+    });
+
+    if (activeId) {
+      desktopNavLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${activeId}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  function checkCounterTrigger() {
+    if (countersDone || counterSpans.length === 0) return;
+    const statsContainer = document.querySelector('.proximity-stats');
+    if (!statsContainer) return;
+
+    const rect = statsContainer.getBoundingClientRect();
+    if (rect.top <= window.innerHeight * 0.92 && rect.bottom >= 0) {
+      countersDone = true;
+
+      counterSpans.forEach(span => {
+        const target = parseInt(span.getAttribute('data-target'), 10);
+        if (isNaN(target) || target === 0) return;
+
+        const duration = 1200;
+        const startTime = performance.now();
+
+        function updateCounter(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeProgress * target);
+
+          span.innerText = current;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            span.innerText = target;
+          }
+        }
+        requestAnimationFrame(updateCounter);
+      });
+    }
+  }
+
+  function handleScrollInteractions() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+
+    // Update top progress bar
+    if (scrollProgressBar) {
+      scrollProgressBar.style.transform = `scaleX(${progress})`;
+    }
+
+    // Update Floating Back-To-Top button
+    if (backToTopBtn) {
+      if (scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+
+      if (progressRingCircle) {
+        const offset = RING_CIRCUMFERENCE - (progress * RING_CIRCUMFERENCE);
+        progressRingCircle.style.strokeDashoffset = `${offset}`;
+      }
+    }
+
+    // ScrollSpy active link update
+    updateActiveNavLink(scrollY);
+
+    // Number counters trigger
+    checkCounterTrigger();
+  }
+
+  window.addEventListener('scroll', handleScrollInteractions, { passive: true });
+  // Trigger once on load
+  handleScrollInteractions();
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }
     });
   }
+
+  // =========================================================================
+  // 4. AOS Scroll Reveal Initialization & High-Performance Fallback
+  // =========================================================================
+  if (!prefersReducedMotion) {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 750,
+        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+        once: true,
+        offset: 50
+      });
+    } else if ('IntersectionObserver' in window) {
+      const fallbackObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('aos-animate');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        fallbackObserver.observe(el);
+      });
+    } else {
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        el.classList.add('aos-animate');
+      });
+    }
+  }
+
+  // =========================================================================
+  // 5. Interactive 3D Card Hover Tilt (Desktop Fine Pointer Only)
+  // =========================================================================
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
+    const tiltCards = document.querySelectorAll('.feature-card, .room-card, .amenity-card');
+    
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -3.5;
+        const rotateY = ((x - centerX) / centerX) * 3.5;
+
+        card.style.transform = `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
 
   // Mobile Nav Toggle
   const mobileToggle = document.getElementById('mobileNavToggle');
@@ -275,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxModal) {
       lightboxModal.classList.add('active');
       lightboxModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (window.pauseScroll) window.pauseScroll(); else document.body.style.overflow = 'hidden';
     }
   }
 
@@ -283,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxModal) {
       lightboxModal.classList.remove('active');
       lightboxModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      if (window.resumeScroll) window.resumeScroll(); else document.body.style.overflow = '';
     }
   }
 
@@ -407,12 +671,14 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOptionSelect.value = option;
       }
       modalOverlay.classList.add('active');
+      if (window.pauseScroll) window.pauseScroll();
     });
   });
 
   if (modalClose) {
     modalClose.addEventListener('click', () => {
       modalOverlay.classList.remove('active');
+      if (window.resumeScroll) window.resumeScroll();
     });
   }
 
@@ -420,6 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) {
         modalOverlay.classList.remove('active');
+        if (window.resumeScroll) window.resumeScroll();
       }
     });
   }
@@ -806,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (disclaimerModal) {
       disclaimerModal.classList.add('active');
       disclaimerModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (window.pauseScroll) window.pauseScroll(); else document.body.style.overflow = 'hidden';
     }
   }
 
@@ -814,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (disclaimerModal) {
       disclaimerModal.classList.remove('active');
       disclaimerModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      if (window.resumeScroll) window.resumeScroll(); else document.body.style.overflow = '';
       try {
         sessionStorage.setItem('aeronest_disclaimer_viewed', 'true');
       } catch (err) {
@@ -1000,7 +1267,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (instaModal) {
         instaModal.classList.add('active');
         instaModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        if (window.pauseScroll) window.pauseScroll(); else document.body.style.overflow = 'hidden';
       }
     } else if (directLink) {
       window.open(directLink, '_blank', 'noopener');
@@ -1011,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (instaModal) {
       instaModal.classList.remove('active');
       instaModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      if (window.resumeScroll) window.resumeScroll(); else document.body.style.overflow = '';
       if (modalVideo) {
         modalVideo.pause();
         modalVideo.src = '';

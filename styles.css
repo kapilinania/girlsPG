@@ -4169,3 +4169,243 @@ section[id] {
 
 
 
+
+
+/* ==========================================================================
+   Interactive Smooth Scroll, Lenis & Scroll Animations System
+   ========================================================================== */
+
+/* 1. Lenis Smooth Scroll Engine Base */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* 2. Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #070c1a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e11d48, #be123c);
+  border-radius: 9999px;
+  border: 2px solid #070c1a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f43f5e, #e11d48);
+}
+
+/* 3. Top Reading Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5px;
+  background: linear-gradient(90deg, #e11d48 0%, #f59e0b 50%, #fb7185 100%);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+  z-index: 10002;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.7), 0 0 4px rgba(245, 158, 11, 0.4);
+  will-change: transform;
+}
+
+/* 4. Interactive Floating Back-To-Top Button with Circular SVG Progress */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 85px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(7, 12, 26, 0.4);
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.back-to-top-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  background: #151f38;
+  border-color: rgba(225, 29, 72, 0.6);
+  box-shadow: 0 12px 30px rgba(225, 29, 72, 0.45);
+  color: var(--accent-rose-soft);
+}
+.back-to-top-btn i {
+  font-size: 0.92rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+.back-to-top-btn:hover i {
+  transform: translateY(-2px);
+}
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+.progress-ring-bg {
+  stroke: rgba(255, 255, 255, 0.12);
+}
+.progress-ring-circle {
+  stroke: var(--accent-rose);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+/* 5. Nav Link Active ScrollSpy State */
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+.nav-link.active::after {
+  width: 100%;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.7);
+}
+
+/* 6. Custom High-Performance Fallback & Enhancements for AOS */
+[data-aos] {
+  will-change: transform, opacity;
+}
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-aos="zoom-in"] {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+[data-aos="zoom-in"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+[data-aos="fade-right"] {
+  opacity: 0;
+  transform: translateX(-26px);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+[data-aos="fade-right"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="fade-left"] {
+  opacity: 0;
+  transform: translateX(26px);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+[data-aos="fade-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-aos="zoom-in-up"] {
+  opacity: 0;
+  transform: scale(0.94) translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+[data-aos="zoom-in-up"].aos-animate {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 7. Interactive Hover Depth & Micro-Interactions on Cards */
+.feature-card,
+.room-card,
+.amenity-card,
+.proximity-card,
+.faq-item {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.25s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 16px 36px rgba(225, 29, 72, 0.15), 0 6px 14px rgba(7, 12, 26, 0.08);
+  border-color: rgba(225, 29, 72, 0.4);
+}
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 42px rgba(7, 12, 26, 0.14), 0 0 20px rgba(225, 29, 72, 0.1);
+}
+.amenity-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(225, 29, 72, 0.12);
+  border-color: rgba(225, 29, 72, 0.35);
+}
+.proximity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(7, 12, 26, 0.1);
+  border-color: var(--accent-rose);
+}
+.stat-box {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.stat-box:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+/* 8. Mobile & Responsive Layout Optimizations */
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 78px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+  }
+  .back-to-top-btn svg {
+    width: 42px;
+    height: 42px;
+  }
+  .feature-card:hover,
+  .room-card:hover,
+  .amenity-card:hover {
+    transform: none; /* Keep clean on touch screens */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .scroll-progress-bar,
+  .back-to-top-btn {
+    transition: none !important;
+  }
+}

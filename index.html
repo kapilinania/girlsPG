@@ -84,6 +84,8 @@
 
   <!-- Stylesheets & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Rich JSON-LD Structured Data Schema 1: LodgingBusiness, Hostel & LocalBusiness -->
@@ -296,6 +298,8 @@
   </script>
 </head>
 <body>
+  <!-- Top Reading Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4BDF98T"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -647,7 +651,7 @@
   <!-- Photo & Property Visual Showcase Section (Right After Hero) -->
   <section class="section section-bg-alt" id="gallery">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Visual Showcase</span>
         <h2 class="section-title">Explore Aeronest Living Spaces</h2>
         <p class="section-subtitle">
@@ -656,7 +660,7 @@
       </div>
 
       <!-- Gallery Filter Tabs (Photos First) -->
-      <div class="gallery-filter-container">
+      <div class="gallery-filter-container" data-aos="fade-up" data-aos-delay="80">
         <button class="gallery-filter-btn active" data-gallery-filter="all">
           <i class="fa-solid fa-border-all"></i> All Photos
         </button>
@@ -1043,7 +1047,7 @@
       </div>
 
       <!-- Instagram Real Video Reels Section (Pure 4-Reel Interactive Grid, 100% Mobile Responsive) -->
-      <div class="insta-divider-block" id="instaReelsSection">
+      <div class="insta-divider-block" id="instaReelsSection" data-aos="fade-up">
         <span class="insta-divider-tag"><i class="fa-solid fa-circle-play"></i> Real Video Reels</span>
         <h3 class="insta-divider-title">Watch Live Video Reels of Aeronest</h3>
         <p class="insta-divider-subtitle">Explore genuine video walkthroughs and room tours of our luxury accommodation directly from our official Instagram page.</p>
@@ -1053,7 +1057,7 @@
       <div class="insta-video-grid" id="instaVideoGrid">
 
         <!-- Reel 1: Full PG & Flats Walkthrough -->
-        <div class="insta-square-card" data-video-src="videos/reel_walkthrough.mp4" data-title="Aeronest Full PG &amp; Flats Walkthrough" data-direct-link="https://www.instagram.com/reel/De-zVRiM8pB/?cplk=MWZjamtoNHY5Z3Q4bQ==">
+        <div class="insta-square-card" data-aos="fade-up" data-aos-delay="200" data-aos="fade-up" data-aos-delay="150" data-aos="fade-up" data-aos-delay="100" data-aos="fade-up" data-aos-delay="50" data-video-src="videos/reel_walkthrough.mp4" data-title="Aeronest Full PG &amp; Flats Walkthrough" data-direct-link="https://www.instagram.com/reel/De-zVRiM8pB/?cplk=MWZjamtoNHY5Z3Q4bQ==">
           <div class="insta-square-media">
             <video src="videos/reel_walkthrough.mp4" autoplay loop muted playsinline preload="metadata" class="insta-square-video" title="Aeronest Full PG &amp; Flats Walkthrough"></video>
             <div class="insta-square-overlay"></div>
@@ -1205,7 +1209,7 @@
   <!-- Why Aeronest Section -->
   <section class="section" id="why-aeronest">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Why Choose Us</span>
         <h2 class="section-title">Guwahati’s #1 Choice for Female Professionals & Aviation Crew</h2>
         <p class="section-subtitle">
@@ -1215,7 +1219,7 @@
 
       <div class="features-grid">
         <!-- Feature 1 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-person-walking-luggage"></i>
           </div>
@@ -1224,7 +1228,7 @@
         </div>
 
         <!-- Feature 2 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-key"></i>
           </div>
@@ -1233,7 +1237,7 @@
         </div>
 
         <!-- Feature 3 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-fire-burner"></i>
           </div>
@@ -1242,7 +1246,7 @@
         </div>
 
         <!-- Feature 4 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-user-shield"></i>
           </div>
@@ -1251,7 +1255,7 @@
         </div>
 
         <!-- Feature 5 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-dumbbell"></i>
           </div>
@@ -1260,7 +1264,7 @@
         </div>
 
         <!-- Feature 6 -->
-        <div class="feature-card">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon-wrapper">
             <i class="fa-solid fa-bolt-lightning"></i>
           </div>
@@ -1270,7 +1274,7 @@
       </div>
 
       <!-- Airport Distance / Proximity Banner -->
-      <div class="proximity-banner">
+      <div class="proximity-banner" data-aos="fade-up" data-aos-delay="100">
         <div class="proximity-content">
           <h3>Designed around your Shift Roster</h3>
           <p>Whether you work early morning departure flights, late-night arrival rosters, or corporate shifts in Azara, Aeronest provides zero commute delay and maximum safety.</p>
@@ -1280,21 +1284,21 @@
             </a>
           </div>
         </div>
-        <div class="proximity-stats">
-          <div class="stat-box">
-            <div class="stat-number">2-3 Mins</div>
+        <div class="proximity-stats" data-aos="zoom-in" data-aos-delay="150">
+          <div class="stat-box" data-aos="fade-up" data-aos-delay="80">
+            <div class="stat-number"><span class="counter-val" data-target="2" data-suffix="-3 Mins">2</span>-3 Mins</div>
             <div class="stat-label">Walk to Guwahati Airport</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">24 / 7</div>
+          <div class="stat-box" data-aos="fade-up" data-aos-delay="140">
+            <div class="stat-number"><span class="counter-val" data-target="24" data-suffix=" / 7">24</span> / 7</div>
             <div class="stat-label">Entry & Kitchen Access</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">100%</div>
+          <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number"><span class="counter-val" data-target="100" data-suffix="%">100</span>%</div>
             <div class="stat-label">Exclusively Female / Crew</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">0 Min</div>
+          <div class="stat-box" data-aos="fade-up" data-aos-delay="260">
+            <div class="stat-number"><span class="counter-val" data-target="0" data-suffix=" Min">0</span> Min</div>
             <div class="stat-label">Cab Waiting Delay</div>
           </div>
         </div>
@@ -1305,7 +1309,7 @@
   <!-- Accommodation Options Section -->
   <section class="section section-bg-alt" id="accommodations">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Living Options</span>
         <h2 class="section-title">Fully Furnished PG Rooms &amp; Independent Rental Flats</h2>
         <p class="section-subtitle">
@@ -1324,7 +1328,7 @@
       </div>
 
       <!-- Filter Buttons -->
-      <div class="filter-bar">
+      <div class="filter-bar" data-aos="fade-up" data-aos-delay="80">
         <button class="filter-btn active" data-filter="all">All Living Options</button>
         <button class="filter-btn" data-filter="private">Private PG Rooms</button>
         <button class="filter-btn" data-filter="shared">Shared PG Rooms</button>
@@ -1335,7 +1339,7 @@
       <!-- Rooms Grid -->
       <div class="rooms-grid">
         <!-- Private PG Room -->
-        <div class="room-card" data-category="private">
+        <div class="room-card" data-category="private" data-aos="fade-up" data-aos-delay="60">
           <div class="room-image-wrapper">
             <img src="images/inside/10.jpg" alt="Private Single PG Room for Girls opposite Guwahati Airport">
             <span class="room-tag">Private PG Room</span>
@@ -1364,7 +1368,7 @@
         </div>
 
         <!-- Shared PG Room -->
-        <div class="room-card" data-category="shared">
+        <div class="room-card" data-category="shared" data-aos="fade-up" data-aos-delay="120">
           <div class="room-image-wrapper">
             <img src="images/inside/11.jpg" alt="Shared Girls PG Room Azara Guwahati Airport">
             <span class="room-tag">Shared PG Room</span>
@@ -1393,7 +1397,7 @@
         </div>
 
         <!-- 2BHK Flat -->
-        <div class="room-card" data-category="flat2bhk">
+        <div class="room-card" data-category="flat2bhk" data-aos="fade-up" data-aos-delay="180">
           <div class="room-image-wrapper">
             <img src="images/inside/4.jpg" alt="2BHK Flat on rent opposite Guwahati Airport">
             <span class="room-tag">2 BHK Rental Flat</span>
@@ -1422,7 +1426,7 @@
         </div>
 
         <!-- 3BHK Luxury Flat -->
-        <div class="room-card" data-category="flat3bhk">
+        <div class="room-card" data-category="flat3bhk" data-aos="fade-up" data-aos-delay="240">
           <div class="room-image-wrapper">
             <img src="images/inside/5.jpg" alt="3BHK Luxury Apartment opposite Guwahati Airport">
             <span class="room-tag">3 BHK Luxury Flat</span>
@@ -1456,7 +1460,7 @@
   <!-- Amenities Grid & Showcase -->
   <section class="section" id="amenities">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Premium Facilities</span>
         <h2 class="section-title">Everything You Need for Effortless Living</h2>
         <p class="section-subtitle">
@@ -1465,7 +1469,7 @@
       </div>
 
       <div class="amenities-grid">
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="40">
           <div class="amenity-icon"><i class="fa-solid fa-shield-cat"></i></div>
           <div class="amenity-text">
             <h4>24/7 Security & CCTV</h4>
@@ -1473,7 +1477,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="80">
           <div class="amenity-icon"><i class="fa-solid fa-utensils"></i></div>
           <div class="amenity-text">
             <h4>24-Hour Kitchen Access</h4>
@@ -1481,7 +1485,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="120">
           <div class="amenity-icon"><i class="fa-solid fa-dumbbell"></i></div>
           <div class="amenity-text">
             <h4>In-House Fitness Gym</h4>
@@ -1489,7 +1493,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="160">
           <div class="amenity-icon"><i class="fa-solid fa-tree"></i></div>
           <div class="amenity-text">
             <h4>Walking Garden & Path</h4>
@@ -1497,7 +1501,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="200">
           <div class="amenity-icon"><i class="fa-solid fa-child-reaching"></i></div>
           <div class="amenity-text">
             <h4>Children's Play Zone</h4>
@@ -1505,7 +1509,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="240">
           <div class="amenity-icon"><i class="fa-solid fa-wifi"></i></div>
           <div class="amenity-text">
             <h4>High-Speed Wi-Fi</h4>
@@ -1513,7 +1517,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="280">
           <div class="amenity-icon"><i class="fa-solid fa-broom"></i></div>
           <div class="amenity-text">
             <h4>Hygienic Housekeeping</h4>
@@ -1521,7 +1525,7 @@
           </div>
         </div>
 
-        <div class="amenity-card">
+        <div class="amenity-card" data-aos="fade-up" data-aos-delay="320">
           <div class="amenity-icon"><i class="fa-solid fa-car"></i></div>
           <div class="amenity-text">
             <h4>Secured Parking</h4>
@@ -1553,7 +1557,7 @@
   <!-- FAQ Section (Searchable Accordion for SEO) -->
   <section class="section section-bg-alt" id="faq">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Got Questions?</span>
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">
@@ -1562,14 +1566,14 @@
       </div>
 
       <!-- FAQ Search Bar -->
-      <div class="faq-search-wrapper">
+      <div class="faq-search-wrapper" data-aos="fade-up" data-aos-delay="60">
         <i class="fa-solid fa-magnifying-glass faq-search-icon"></i>
         <input type="text" id="faqSearch" class="faq-search-input" placeholder="Search questions (e.g., curfew, kitchen, flats)...">
       </div>
 
       <div class="faq-container">
         <!-- Question 1 -->
-        <div class="faq-item active">
+        <div class="faq-item active" data-aos="fade-up" data-aos-delay="40">
           <button class="faq-question">
             <h4>Which is the best girls PG near Guwahati Airport (LGBI)?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1580,7 +1584,7 @@
         </div>
 
         <!-- Question 2 -->
-        <div class="faq-item">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="80">
           <button class="faq-question">
             <h4>Are there any entry or exit curfew timings?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1591,7 +1595,7 @@
         </div>
 
         <!-- Question 3 -->
-        <div class="faq-item">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
           <button class="faq-question">
             <h4>Is self-cooking allowed at the PG?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1602,7 +1606,7 @@
         </div>
 
         <!-- Question 4 -->
-        <div class="faq-item">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="160">
           <button class="faq-question">
             <h4>Are 2BHK and 3BHK flats also available for rent?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1613,7 +1617,7 @@
         </div>
 
         <!-- Question 5 -->
-        <div class="faq-item">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
           <button class="faq-question">
             <h4>Is Aeronest PG close to Assam Don Bosco University (ADBU) and GIMT Azara?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1624,7 +1628,7 @@
         </div>
 
         <!-- Question 6 -->
-        <div class="faq-item">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
           <button class="faq-question">
             <h4>Where is Aeronest located and how do I schedule a visit?</h4>
             <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1640,7 +1644,7 @@
   <!-- Location & Contact Section -->
   <section class="section" id="location">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Visit Us</span>
         <h2 class="section-title">Location &amp; Connectivity Hub</h2>
         <p class="section-subtitle">
@@ -1649,7 +1653,7 @@
       </div>
 
       <div class="location-wrapper">
-        <div class="location-details">
+        <div class="location-details" data-aos="fade-right">
           <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 8px;">Aeronest Girls PG &amp; Apartments</h3>
           <p style="color: var(--text-muted); font-size: 0.95rem;">Premier Female Accommodation Opposite LGBI Airport</p>
 
@@ -1697,7 +1701,7 @@
           </div>
         </div>
 
-        <div class="map-container">
+        <div class="map-container" data-aos="fade-left">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14322.259837130579!2d91.58315!3d26.10657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a4430e704b2b1%3A0xb35a09c2a688bfa6!2sLokpriya%20Gopinath%20Bordoloi%20International%20Airport!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
             allowfullscreen="" 
@@ -1709,7 +1713,7 @@
       </div>
 
       <!-- Proximity & Landmark Matrix for Local SEO Google Search -->
-      <div class="proximity-section">
+      <div class="proximity-section" data-aos="fade-up">
         <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--primary-navy); margin-bottom: 6px;">
           <i class="fa-solid fa-route" style="color: var(--accent-rose);"></i> Strategic Location &amp; Nearby Key Transit Hubs
         </h3>
@@ -1718,7 +1722,7 @@
         </p>
 
         <div class="proximity-grid">
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="50">
             <div class="proximity-icon"><i class="fa-solid fa-plane-departure"></i></div>
             <div class="proximity-info">
               <h4>LGBI Airport Terminal</h4>
@@ -1727,7 +1731,7 @@
             </div>
           </div>
 
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="100">
             <div class="proximity-icon"><i class="fa-solid fa-train"></i></div>
             <div class="proximity-info">
               <h4>Azara Railway Station</h4>
@@ -1736,7 +1740,7 @@
             </div>
           </div>
 
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="150">
             <div class="proximity-icon"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="proximity-info">
               <h4>Don Bosco University</h4>
@@ -1745,7 +1749,7 @@
             </div>
           </div>
 
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="200">
             <div class="proximity-icon"><i class="fa-solid fa-building-columns"></i></div>
             <div class="proximity-info">
               <h4>GIMT College Azara</h4>
@@ -1754,7 +1758,7 @@
             </div>
           </div>
 
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="250">
             <div class="proximity-icon"><i class="fa-solid fa-cart-shopping"></i></div>
             <div class="proximity-info">
               <h4>Borjhar Market &amp; Banks</h4>
@@ -1763,7 +1767,7 @@
             </div>
           </div>
 
-          <div class="proximity-card">
+          <div class="proximity-card" data-aos="fade-up" data-aos-delay="300">
             <div class="proximity-icon"><i class="fa-solid fa-bus"></i></div>
             <div class="proximity-info">
               <h4>Jalukbari &amp; Gauhati Univ.</h4>
@@ -1805,7 +1809,7 @@
 
   <!-- CTA Banner -->
   <section class="cta-section">
-    <div class="cta-container">
+    <div class="cta-container" data-aos="zoom-in" data-aos-duration="600">
       <h2>Ready to Move in to Guwahati's Safest Airport Residence?</h2>
       <p>Rooms and flats fill up quickly due to high demand from airline rosters. Book your walkthrough visit today!</p>
       <div class="cta-actions">
@@ -2010,6 +2014,19 @@
   </button>
 
   <script async src="https://www.instagram.com/embed.js"></script>
+    <!-- Interactive Floating Back-To-Top Button with Circular SVG Progress Ring -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top" title="Scroll back to top">
+    <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+      <circle class="progress-ring-bg" cx="23" cy="23" r="19" fill="none" stroke-width="3"/>
+      <circle class="progress-ring-circle" id="progressRingCircle" cx="23" cy="23" r="19" fill="none" stroke-width="3"/>
+    </svg>
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Lenis Smooth Scroll Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- AOS (Animate On Scroll) Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
